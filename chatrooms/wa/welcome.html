@@ -1,0 +1,1534 @@
+<!DOCTYPE html>
+<html>
+<body>
+<script>
+if(window.location.pathname == ("/chatrooms/wa/welcome.html")){
+	document.write("<h1><a href='/chatrooms/wa/'>You cannot access this page standalone. It must be loaded using a Chatrooms client.</a></h1>");
+}
+document.getElementById("darkmode").href = "";
+$('#consentModal').modal({backdrop: 'static', keyboard: false});
+$('#loadingResourcesModal').modal({backdrop: 'static', keyboard: false});
+$("#loadingResourcesModal").modal("show");
+if(typeof(Storage) !== "undefined") 
+{
+	if(localStorage.getItem("consented_to_policies_v4") == "true"){
+		console.log("User has consented to policies. No need to show modal.");
+	}
+	else{
+		
+		var allowconsentbutton = 5;
+	    	var allowconsentbuttontimer = setInterval(function(){
+			if(allowconsentbutton != 0){
+	    			$("#consentAcceptButton").html = "I Agree (" + allowconsentbutton + ")";
+				allowconsentbutton--;
+			}
+			else{
+				clearInterval(allowconsentbuttontimer);
+				$("#consentAcceptButton").disabled = false;
+			}
+	    	}, 1000);
+		//$("#consentModal").modal("show");
+	}
+
+	if(localStorage.getItem("notivolume") != "undefined"){
+		$(".notivolume")[0].value = localStorage.getItem("notivolume");
+		audio.volume = localStorage.getItem("notivolume");
+	}
+	else{
+		audio.volume = 1;
+	}
+
+	if(platform = 'm') document.getElementById("darkmode").href = localStorage.getItem("theme") + ".css";
+	else  document.getElementById("darkmode").href = localStorage.getItem("theme") + ".css";
+	if(localStorage.getItem("theme") != undefined)$("#" + localStorage.getItem("theme") + "mode")[0].classList += " active";
+	if(localStorage.getItem("theme") == "dark" || localStorage.getItem("theme") == "purp" || localStorage.getItem("theme") == "retro"){
+		$("html").attr("data-bs-theme", "dark");
+		console.log("Dark theme selected");
+		//document.getElementById("darkmode").href = "./.css";	
+	}
+	/*if(localStorage.getItem("theme") == "dark"){
+		console.log("Dark theme selected");
+		document.getElementById("darkmode").href = "./dark.css";	
+	}
+	else if(localStorage.getItem("theme") == "gray"){
+		console.log("Gray theme selected");
+		document.getElementById("darkmode").href = "./gray.css";	
+	}
+	else if(localStorage.getItem("theme") == "christmas"){
+		console.log("Gray theme selected");
+		document.getElementById("darkmode").href = "./christmas.css";	
+	}
+	else{
+		document.getElementById("darkmode").href = "";
+	}*/
+	beginStringery();
+} 
+else{
+ 	console.error("userstore not available, I feel like nuking this page");
+	document.write("");
+}
+
+
+</script>
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="check-circle-fill" viewBox="0 0 16 16">
+    <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+  </symbol>
+  <symbol id="info-fill" viewBox="0 0 16 16">
+    <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"/>
+  </symbol>
+  <symbol id="exclamation-triangle-fill" viewBox="0 0 16 16">
+    <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+  </symbol>
+</svg>
+<div class="container-fluid mt-3">
+<style id='css'></style>
+<div class="modal fade" id="aboutModal">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title" id='aboutrooms_t'>About Chatrooms</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+	<ul class="nav nav-tabs" id="myTab" role="tablist">
+  <li class="nav-item" role="presentation">
+    <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#about-chtr" type="button" role="tab">About</button>
+  </li>
+  <li class="nav-item" role="presentation">
+    <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#credits" type="button" role="tab">Credits</button>
+  </li>
+  <li class='nav-item' role='presentation'>
+    <button class='nav-link' id='license-tab' data-bs-toggle='tab' data-bs-target='#licensing-t'>Licensing</button>
+  </li>
+</ul>
+<div class="tab-content" id="myTabContent">
+  <div class="tab-pane fade show active" id="about-chtr" role="tabpanel" tabindex="0">
+	<br>
+	<img src='Cloud.png' width='128' height='96' alt='CloudSeeker Cloud'> &nbsp; &nbsp; <img src='CloudSeekerWordmarkMulticolor.png' width='520' height='64' alt='CloudSeeker Wordmark'><br><br>
+	<p><b id='odw'>Creating a more open digital world.</b></p>
+	<hr>
+	<img src='WatermarkSatelliteEnabled.png' width='128' height='128' style='cursor: help;' title='What could this possibly warp to?' onclick='location.href="./tribute.html"' alt='Chatrooms Logo'> <img src='WatermarkMegaUpdate.png' width='128' height='128' alt='Chatrooms Mega Update Logo'>
+        <p>The Chatrooms Experience</p>
+	<p>Client v0.7E</p>
+	<p>Satellite v<span id='satVer'>Version Loading...</span></p>
+	<p id='cloudseekrQuote'><span style='font-size: 32px;' id='quote_p1'>"Friendships may come and go, but real friendships are always here to stay."</span> <span id='quote_p2'>- Macedonian quote</span></p>
+  </div>
+  <div class="tab-pane fade text-center" id="credits" role="tabpanel" tabindex="0">
+	<br>
+	<h2>The CloudSeeker Collective</h2>
+	<p><b>CloudSeeker</b> Theodor Boshkoski<small>/Popular Toppling Jelly</small></p>
+	<p><b>CloudSeeker</b> GeofTheCake</p>
+	<p><b>CloudSeeker</b> Orey</p>
+	<hr>
+	<h2>Developers</h2>
+	<p><b>CloudSeeker</b> Theodor Boshkoski<small>/Popular Toppling Jelly</small></p>
+	<p>And contributors</p>
+	<hr>
+	<h2>Translations</h2>
+	<p>
+	dubtoshi (Turkish) (currently not in use)<br>
+	<b>CloudSeeker</b> GeofTheCake (Spanish)<br>
+	<b>CloudSeeker</b> Theodor Boshkoski (Macedonian)<br>
+	Romolo (Italian) (currently not in use)<br>
+	</p>
+	<hr>
+	<h2>Special Thanks</h2>
+	<p><b>CloudSeeker</b> GeofTheCake - for creating designs, including the Chatrooms logo, and being here since the beginning :)</p>
+	<p>Waffle - for initial security tests on the Chatrooms Satellite, also early closed beta tester</p>
+	<p>ScrumplyJester - early closed beta tester</p>
+	<p>dubtoshi - early closed beta tester</p><br>
+	<img src='https://cloudseeker.xyz/userstore/12457976f9913a1d83688b58fd01e046.png' width='50%' height='50%'>
+	<p>Powered by PHP</p>
+  </div>
+  <div class='tab-pane fade' id='licensing-t' role='tabpanel' tabindex='0'>
+  	<br>
+	<p>The Chatrooms Satellite is licensed under the AGPL-3 License. Pay a visit to the license <a href='#' onclick='extLink("https://raw.githubusercontent.com/populartopplingjelly/chatrooms/main/LICENSE")'>here</a>.</p>
+	<p>The Source Sans Pro font is licensed under the OFL License. Pay a visit to the license <a href='#' onclick='extLink("https://cloudseeker.xyz/assets/fonts/OFL.txt")'>here</a>.</p>
+	<p>Bootstrap and Bootstrap Icons are licensed under the MIT License. Pay a visit to the license <a href='#' onclick='extLink("https://raw.githubusercontent.com/twbs/bootstrap/main/LICENSE")'>here</a>.</p>
+	<p>JQuery is licensed under the MIT License. Pay a visit to the license <a href='#' onclick='extLink("https://raw.githubusercontent.com/jquery/jquery/main/LICENSE.txt")'>here</a>.</p>
+	<p>"Steam" is a trademark owned by Valve Corp. We are not affiliated.</p>
+	<p>"PHP" is a trademark owned by the PHP Group. We are not affiliated.</p>
+  </div>
+</div>
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+  		<button type="button" class="btn btn-primary btn-block" data-bs-dismiss="modal" id='aboutrooms_o'>Ok</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="infoModal">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title" id='info_chatroomNameTitle'>About this Chatroom</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <!-- Modal body -->
+      <div id='settings_info' class="modal-body">
+	lol
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+  		<button type="button" class="btn btn-primary btn-block" data-bs-dismiss="modal" id='infom_ok'>Ok</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+<!--
+<div class="modal fade" id="whispersV2Modal">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id='chatroomsAnnouncement'>What's New?</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+	<h2>0.7.3: The Retro Update</h2><hr>
+	<img src="https://cloudseeker.xyz/userstore/ff065607ef488bf3226eb9cb6da1e586.png" class="img-fluid rounded"><br><br>
+        <p>Chatrooms v0.7.3 has been released, and it added new features such as:</p>
+        <ul>
+            <li>New RETRO theme!!!!!!!!</li>
+            <li>Easier whispering</li>
+            <li>Quick invite links</li>
+            <li>And much more! Read about it over at <a href='#' onclick='extLink("https://cloudseeker.xyz/blog/view.php?id=14")'>our Blog</a></li>
+       </div>
+      <div class="modal-footer">
+  		<button type="button" onclick='localStorage.setItem("202305_cloudseeker_1y_2_seen", true)' class="btn btn-primary btn-block" data-bs-dismiss="modal">Ok</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+-->
+<div class="modal fade" id="whispersV2Modal">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id='chatroomsAnnouncement'>What's New?</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+	<h2>Update on Chatrooms Hometown!</h2><hr>
+	<img src="https://cloudseeker.xyz/userstore/ff065607ef488bf3226eb9cb6da1e586.png" class="img-fluid rounded"><br><br>
+        <p>CloudSeeker is moving to a new domain - <a href='#' onclick='extLink("https://cloudseeker.xyz")'>cloudseeker.xyz</a>!</p>
+	<p>What this means is that we will be moving Chatrooms Hometown aswell - so if you're using the cloudseeker.xyz domain to connect to Chatrooms Hometown, you might want to log out and switch to cloudseeker.xyz.</p>
+       </div>
+      <div class="modal-footer">
+  		<button type="button" onclick='localStorage.setItem("202309_cloudseeker_xyz_seen", true)' class="btn btn-primary btn-block" data-bs-dismiss="modal">Ok</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="whispersV2Modal_old">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title" id='chatroomsAnnouncement'>CloudSeeker is celebrating its 1st anniversary!</h4>
+       <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+	We are happy to announce that CloudSeeker was established 1 year ago! To celebrate, we will put out some gifts throughout the coming weeks in Chatrooms Hometown.<br><br>
+	We also have an art contest running at the moment - we are giving away 2 XBOX Game Pass codes for 2 lucky winners who draw a Pyramoid. You can get more info <a href='#' onclick='extLink("https://twitter.com/CloudSeekerxyz/status/1658155008397832192")'>here</a>.
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+  		<button type="button" onclick='localStorage.setItem("202305_cloudseeker_1y_seen", true)' class="btn btn-primary btn-block" data-bs-dismiss="modal">Ok</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="themeSwitcherModal">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id='thememodal'>Theme</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div id='settings_theme' class="modal-body">
+        
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="loadingResourcesModal">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id='loadmodal'>Connecting to Chatrooms...</h4>
+      </div>
+      <div class="modal-body">
+	<div class='d-grid gap-3' id='loadmodal_content'>
+		<div class="spinner-border" aria-label="Loading..."></div>
+	</div>
+	<div id='disconnect_reason'>
+	<div id='actual_disconnect_reason'></div>
+	</div><hr>
+	<div class='text-center d-grid gap-3'>
+		Having issues?
+		<button class='btn btn-outline-danger' onclick='localStorage.removeItem("server"); localStorage.removeItem("token"); location.reload();' id='lgout_l_button'>Log out</button>
+		<button class='btn btn-outline-secondary' onmouseover="innerHTML='Report an issue like it is 1992'" onclick='window.open("https://cloudseeker.xyz/chatrooms/bug/");'>Report an issue</button>
+	</div>
+	<div style='display: none;' id='trouble_logout_button'>Having issues? <br>
+					If you do, it's usually a problem with the Chatroom hosting; to switch to another Chatroom, you should &nbsp;<button class='btn btn-outline-danger' onclick='localStorage.removeItem("server"); localStorage.removeItem("token"); location.reload();'>log out</button><br>
+					If you're having severe issues with using Chatrooms as a host, you should &nbsp;<button class='btn btn-outline-primary' onclick='window.open("https://github.com/PopularTopplingJelly/Chatrooms");'>open an issue or pull request</button>&nbsp; on Github.
+	</div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="localeSwitcherModal">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id='localemodal'>Change Language</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div id='settings_locale' class="modal-body">
+	<div class='d-grid .gap-3'>
+		lol
+	</div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="themeCreatorModal">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Custom CSS</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div id='settings_css' class="modal-body tab-content" role="tabpanel">
+	      </div>
+	<div class="modal-footer">
+  		<button id='acceptcss_b' type="button" class="btn btn-primary btn-block" onclick='$("#css").html(document.getElementById("cssbox").value); localStorage.setItem("css",document.getElementById("cssbox").value);'>Accept</button>
+		<button id='closecss_b' type="button" class="btn btn-danger btn-block" data-bs-dismiss="modal">Close</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="notisModal">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id='notis_ts'>Notifications</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div id='settings_notis' class="modal-body tab-content">
+	      </div>
+
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="supersecretModal">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id='debug_t'>Supersecret Settings</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div id='debug_settings' class="modal-body">
+	<h4 id='beta_features'>Beta Features</h4>
+	<p id='beta_d'>Opt into beta features still in development.</p>
+	<div class="form-check">
+		<input class="form-check-input" type="checkbox" id="hotkeys_beta" onchange='optIn("hotkeys_beta", checked);'>
+		<label class="form-check-label">Hotkeys</label>
+	</div> 
+	<div class="form-check">
+		<input class="form-check-input" type="checkbox" id="keycard" onchange='optIn("keycard", checked);'>
+		<label class="form-check-label">Keycard</label>
+	</div>
+	<div class="form-check">
+		<input class="form-check-input" type="checkbox" id="external_intents" onchange='optIn("external_intents", checked);'>
+		<label class="form-check-label">External Intents</label>
+	</div><hr><br>
+	<h4 id='extras'>To Je Ekstra</h4>
+	<p id='beta_d'>Enable extra debugging features.</p>
+        <p>Each <i class="bi bi-exclamation-triangle-fill"></i> indicates how dangerous the feature is.</p>
+	<div class="form-check">
+		<input class="form-check-input" type="checkbox" id="verbose_logging" onchange='optIn("verbose_logging", checked);'>
+		<label class="form-check-label">Verbose logging <i class="bi bi-exclamation-triangle-fill"></i><br>
+		WARNING: Enabling this will fill your console with logs and potentially slow down Chatrooms - only do this if you're doing some serious debugging!</label>
+	</div>
+	<div class="form-check">
+		<input class="form-check-input" type="checkbox" id="keycard_staging" onchange='optIn("keycard_staging", checked);'>
+		<label class="form-check-label">Switch to staging branch <i class="bi bi-exclamation-triangle-fill"></i><br>
+		WARNING: Enabling this will disconnect you from the main Keycard branch, therefore some features like the server list will show a testing version of it, and the Keycard services themselves may not work properly!</label>
+	</div>
+	<div class="form-check">
+		<input class="form-check-input" type="checkbox" id="inspect_command" onchange='optIn("inspect_command", checked);'>
+		<label class="form-check-label">/inspect and other debugging commands <i class="bi bi-exclamation-triangle-fill"></i><br>
+                WARNING: Make sure you are NOT recording, streaming or showing anything that is revealed from these commands to anybody!</label>
+	</div><br>
+        <button type="button" class="btn btn-danger" onclick='socket.close(); emptyEnvironment(); toaster("All environment data has been reset!");'>Safe Erase Environment Data <i class="bi bi-exclamation-triangle-fill"></i><i class="bi bi-exclamation-triangle-fill"></i></button>
+	<br>WARNING: This will erase most temporary data that is stored in accessible memory and disconnect you from the Chatroom! If you don't want to be disconnected, try "Force Erase Environment Data"<br>
+        <button type="button" class="btn btn-danger" onclick='emptyEnvironment(); toaster("All environment data has been reset, but you are now taking a risk.");'>Force Erase Environment Data <i class="bi bi-exclamation-triangle-fill"></i><i class="bi bi-exclamation-triangle-fill"></i><i class="bi bi-exclamation-triangle-fill"></i></button>
+	<br>WARNING: This does the same as above, but is also a bit risky as you are still connected. You may face authentication errors if you use this.<br>
+        <button type="button" class="btn btn-danger" onclick='localStorage.clear(); toaster("I hope you remember your password!"); let detonate = setTimeout(function(){location.reload();}, 3000);'>Erase All Saved Data <i class="bi bi-exclamation-triangle-fill"></i><i class="bi bi-exclamation-triangle-fill"></i><i class="bi bi-exclamation-triangle-fill"></i></button>
+	<br>WARNING: This deletes ALL SAVED DATA, with NO POINT OF RETURN. The first time Chatrooms experience will appear after this.
+      </div>
+
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="extModal">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title" id='ext_t'>Leaving Chatrooms</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+		<p>You are about to venture an internet outside of Chatrooms, but not everything is safe - do you trust this website? Here's what this link leads to:</p>
+		<input type="text" class="form-control form-control-lg" id="extLinkStuff" readonly placeholder="There should be a link here...">
+      </div>
+	<div class="modal-footer">
+		<button id='denyext_b' type="button" class="btn btn-danger btn-block" data-bs-dismiss="modal">No</button>
+        	<button id='acceptext_b' type="button" class="btn btn-primary btn-block" data-bs-dismiss="modal" onclick='window.open(extUrl);'>Yes</button>
+	</div>
+
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="attachmentModal">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title" id='attach_t'>Attachment</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+		<form method='POST' enctype='multipart/form-data' id='attachmentForm'>
+			<input type="file" class="form-control" name="CHATROOMS_UPLOAD" id="attachment">
+		</form>
+      </div>
+	<div class="modal-footer">
+  		<button id='acceptattach_b' type="button" class="btn btn-primary btn-block" onclick='uploadAttachment();'>Accept</button>
+		<button id='closeattach_b' type="button" class="btn btn-danger btn-block" data-bs-dismiss="modal">Close</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="decryptionModal">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title" id='auth_t'>Authentication Required</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+		<p>The channel you are trying to access is password-protected. Please insert the password to enter this channel.</p>
+		<input type="text" class="form-control" id='decryptBox' placeholder="Insert Password">
+      </div>
+	<div class="modal-footer">
+  		<button id='acceptdecrypt_b' type="button" class="btn btn-primary btn-block" onclick=''>Accept</button>
+		<button id='closedecrypt_b' type="button" class="btn btn-danger btn-block" data-bs-dismiss="modal">Close</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="consentModal">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id='si_attention'>Attention!</h4>
+      </div>
+      <div class="modal-body">
+	<p><b>Chatrooms is still technology in very early testing and may break or have bugs every now and then. If such thing does happen, pay a visit to our <a href='https://github.com/PopularTopplingJelly/Chatrooms'>Github</a> and create an issue or a pull request</b></p>
+	<hr><p>If you are connecting to Chatrooms Hometown, you agree to the CloudSeeker <a href='/privacy.html'>Privacy Policy</a>.</p>
+	<p>And even if you don't accept this policy, you still agree to it by continuing to use Chatrooms Hometown. For termination, pay a visit to <a href="/data-removal">this page</a> or contact me on <a href="https://s.team/p/gmdr-qrbf/FKDKTPPN">Steam</a> or <a href="mailto:ptjelly@protonmail.com">send me an email using the address you used to create your account</a>.</p>
+      </div>
+      <div class="modal-footer">
+  		<button id="consentAcceptButton" class="btn btn-primary btn-block" data-bs-dismiss="modal" onclick='localStorage.setItem("consented_to_policies_v4",true);'>Okay</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="fundingModal">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id='funding_attention'>Hey!</h4>
+      </div>
+      <div class="modal-body">
+	<p>Chatrooms is open source and has no fees at all. Isn't that just amazing! Although, we have many more great things planned that we are unable to finalize without proper funding - so if you are feeling generous tonight, please donate to keep our mission of creating a more open digital world alive.</p>
+	<p>We accept Bitcoin and Monero!</p>
+      </div>
+      <div class="modal-footer">
+  		<button id="fundingPermadeclineButton" class="btn btn-secondary btn-block" data-bs-dismiss="modal" onclick='localStorage.setItem("has_declined_funding",true);'>Don't show this again</button>
+		<button id="fundingPermadeclineButton" class="btn btn-secondary btn-block" data-bs-dismiss="modal">I'll consider it later</button>
+		<button id="fundingPermadeclineButton" class="btn btn-primary btn-block" data-bs-dismiss="modal" onclick='localStorage.setItem("has_declined_funding",true); window.open("https://cloudseeker.xyz/donate.php");'>Donate</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="emotesListModal">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title" id='emoteslist'>Emotes</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+	<select class="form-select" aria-label="Emotes list sort" onchange="emotesListSort = value; getEmotes(emotes, emotesListSort);">
+		<option disabled selected>Sort emotes in...</option>
+    		<option value="0">Tiles</option>
+  		<option value="1">List</option>
+	</select><br>
+	<p>Emotes are here! Here's a list of them:</p>
+        <div class='emotesListElement'>
+	<!--<p><img src='/assets/emotes/clashroyale.png' width='16' height='16'> :clashroyale:</p>
+	<p><img src='/assets/emotes/nerd.png' width='16' height='16'> :nerd:</p>
+	<p><strong>ANIMATED!</strong> <img src='/assets/emotes/heheheha.gif' width='16' height='16'> :heheheha:</p>
+	<p><img src='/assets/emotes/copium.png' width='16' height='16'> :copium:</p>
+	<p><img src='/assets/emotes/okayge.png' width='16' height='16'> :okayge:</p>
+	<p><img src='/assets/emotes/usus.png' width='16' height='16'> :usus:</p>-->
+        </div>
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+  		<button type="button" class="btn btn-primary btn-block" data-bs-dismiss="modal" id='emotes_ok'>Ok</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="commandsModal">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title" id='cmdlist'>Slash Commands</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+	<p>Slash Commands are useful commands you can insert into the chatbox, all characterized by the fact that they start with a <b>/</b>.</p>
+	<p>The commands listed here may also require some arguments.<br>REQUIRED arguments will look like this: [REQUIRED]<br>OPTIONAL arguments will look like this: (OPTIONAL)</p>
+        <ul class='commandsElement'>
+		<li><code>/clear</code> - Clears the chat</li>
+		<li><code>/disconnect</code> - Disconnects you from the Chatroom</li>
+		<li><code>/whisper [USER_ID] [MESSAGE]</code> OR <code>/w [USER_ID] [MESSAGE]</code> - Whisper to a user by user ID. Not recommended for constant use, and should rather only be used for quickly responding to someone.</li>
+        </ul>
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+  		<button type="button" class="btn btn-primary btn-block" data-bs-dismiss="modal" id='cmds_ok'>Ok</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="32bitsModal">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Critical Warning About Your Chatrooms Server!</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+        <p>Your server seems to be running on 32-bit CPU architecture. <b>Some of the systems that Chatrooms uses will completely break when the 32-bit UNIX timestamp end of time is reached (19th of January, 2038).</b> We know it might be too early when we're saying this but, please, upgrade your server to a 64-bit CPU before it's too late. <b>This is your fair warning. This will not be shown again.</b></p>
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+  		<button type="button" class="btn btn-primary btn-block" data-bs-dismiss="modal">Ok</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="protocolUpgradeModal">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title" id='protocolupgrade_t'>Upgrade Required</h4>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+        <p id='protocolupgrade_d'>This Chatroom has been upgraded to a newer version and you need to restart Chatrooms to continue</p>
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+  		<button id='protocolupgrade_b' type="button" class="btn btn-primary btn-block" onclick="location.reload();">Accept</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="logoutModal">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title" id='logout_t'>Log Out</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+        <p id='logout_d'>You are about to log out. Proceed?</p>
+	<p id='logoutSuccess'></p>
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+		<button id='logout_cancel' type="button" class="btn btn-secondary btn-block" data-bs-dismiss="modal">Cancel</button>
+  		<button id='logout_accept' type="button" class="btn btn-danger btn-block" onclick='$("#logoutSuccess").html("Logout Success"); localStorage.removeItem("server"); localStorage.removeItem("token"); location.reload();'>Log Out</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="gdisconnectModal">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title" id='disconnect_t'>Graceful Disconnect</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+        <p id='disconnect_d'>You are about to disconnect from this Chatroom. Proceed?</p>
+	<p id='logoutSuccess'></p>
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+		<button id='gdisc_cancel' type="button" class="btn btn-secondary btn-block" data-bs-dismiss="modal">Cancel</button>
+  		<button id='gdisc_accept' type="button" class="btn btn-danger btn-block" data-bs-dismiss="modal" onclick='socket.close();'>Graceful Disconnect</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="rulesModal">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title" id='rules_ts'>Chatroom Rules</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <!-- Modal body -->
+      <div id='settings_rules' class="tab-content modal-body">
+	You can click on the Rules channel to view this Chatroom's rules.
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+  		<button id='rules_ok' type="button" class="btn btn-primary btn-block" data-bs-dismiss="modal">Ok</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+<!--<div class="modal fade" id="loginModal">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Login to Chatrooms</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <div class="form-floating mb-3 mt-3">
+     		<input type="text" class="form-control" id="LUSER" placeholder="Enter username..." name="Lusername">
+      		<label for="email">Username</label>
+    	</div>
+    	<div class="form-floating mt-3 mb-3">
+     		<input type="text" class="form-control" id="LPASS" placeholder="Enter password..." name="Lpassword">
+      		<label for="pwd">Password</label>
+    	</div>
+	<a href='/?authenticate=anon'>Click here to use Chatrooms as a guest!</a>
+      </div>
+      <div class="modal-footer">
+  		<button type="button" class="btn btn-primary btn-block" data-bs-dismiss="modal">Login</button>
+      </div>
+
+    </div>
+  </div>
+</div>-->
+<script>
+var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+  return new bootstrap.Tooltip(tooltipTriggerEl)
+})
+const popoverTriggerList = document.querySelectorAll('[data-bs-toggle="popover"]')
+const popoverList = [...popoverTriggerList].map(popoverTriggerEl => new bootstrap.Popover(popoverTriggerEl))
+
+</script>
+<div class="modal fade" id="addChModal">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Add or create Chatroom</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+        <div class="d-grid gap-3" id='pickYourChatroom'>
+		<div class="card">
+  			<div class="card-body" style='color: black;'>
+				Join an already existing Chatroom and join the fun!
+			</div>
+  			<div class="card-footer d-grid">
+				<!-- <button type="button" class="btn btn-primary btn-block" data-bs-toggle="tooltip" title="You have reached the Chatroom limit.">Disabled</button> -->
+				Purchase [galauncher_premium_service] to add more Chatrooms!
+			</div>
+		</div>
+		<div class="card">
+  			<div class="card-body" style='color: black;'>
+				Create a Chatroom and invite your friends or people!
+			</div>
+  			<div class="card-footer d-grid">
+				<!-- <button type="button" class="btn btn-secondary btn-block" data-bs-toggle="tooltip" title="You have reached the Chatroom limit.">Disabled</button> -->
+				Purchase [galauncher_premium_service] to add more Chatrooms!
+			</div>
+		</div>
+		or...
+		<button type="button" class="btn btn-block">Whisper to someone</button>
+	</div> 
+	<div class="d-grid gap-3" id='joinYourChatroom' style='display: none !important;'>
+		<div class="card">
+  			<div class="card-body">
+				Insert your Chatroom invite:
+			</div>
+  			<div class="card-footer d-grid">
+				<button type="button" class="btn btn-primary btn-block">Join</button>
+			</div>
+		</div>
+	</div> 
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+  		<button type="button" class="btn btn-danger btn-block" data-bs-dismiss="modal">Cancel</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="multiModal">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Welcome to the Chatrooms Experience!</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+        <div class="d-grid gap-3" id='pickYourChatroom'>
+		<div class="card">
+  			<div class="card-header" style='color: black;'>
+				Based Club
+			</div>
+			<div class="card-body" style='color: black;'>
+				Anonymous Users Allowed: No<br>
+				Chatroom Saves Messages: No<br>
+				Chatroom Is Encrypted: No
+			</div>
+  			<div class="card-footer d-grid">
+				<!-- <button type="button" class="btn btn-primary btn-block" data-bs-toggle="tooltip" title="You have reached the Chatroom limit.">Disabled</button> -->
+				<button class='btn btn-success' onclick='location.reload();'>Accept</button>
+			</div>
+		</div>
+	</div> 
+	<div class="d-grid gap-3" id='joinYourChatroom' style='display: none !important;'>
+		<div class="card">
+  			<div class="card-body">
+				Insert your Chatroom invite:
+			</div>
+  			<div class="card-footer d-grid">
+				<button type="button" class="btn btn-primary btn-block">Join</button>
+			</div>
+		</div>
+	</div> 
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+  		<button type="button" class="btn btn-danger btn-block" data-bs-dismiss="modal">Cancel</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="otherUserModal">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title" id='userinfo_t'>User info</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+	<img src='account.png' class="rounded" id='other_pfp' width='128', height='128'>
+	<span><p class='placeholder-glow' id='accountInfoUsername_O' style='font-size: 32px;'><span class="placeholder col-6"></span></p></span>
+	"<span id='accountInfoPStatus_0' class='placeholder-glow'><span class="placeholder col-8"></span></span>"<br><br>
+	<div class='userActions'>
+		<!--<button id='starWhisperButton' onclick='addMessage(&quot;System&quot;, &quot;You are now whispering to this user&quot;, 0, 0, true, now_new, true); initiateWhisper(WU, true)' data-bs-dismiss="modal" type="button" style='--bs-btn-bg: orange; --bs-btn-color: white; --bs-btn-hover-bg: shade-color(orange, 10%); --bs-btn-active-bg: shade-color(orange, 20%);' class="btn"><b>Star</b></button>-->
+		<button id='whisperButton' onclick='addMessage(&quot;System&quot;, &quot;You are now whispering to &quot;+ WUname, 0, 0, true, now_new, true); initiateWhisper(WU, true); addToDMList(WUname, WU); messageAutoscroll();' data-bs-dismiss="modal" type="button" class="btn btn-primary" disabled>Whisper</button> 
+		<div class="dropdown" style='display: inline;'>
+			<button id='ouMoreButton' type="button" class="btn btn-outline-secondary btn-block dropdown-toggle" data-bs-toggle="dropdown">More actions</button>
+			<ul class="dropdown-menu">
+				<li><a id='copyIdButton' class="dropdown-item" href='#' onclick='if(WU == 0){toaster("Considering the System is above all beings on Chatrooms, he does not need identification.");}else{navigator.clipboard.writeText(WU); toaster("Copied to clipboard!");}'>Copy User ID</a></li>
+				<li><a id='blockButton' class="dropdown-item" href='#' onclick='if(WU == 0){toaster("<h2>Do not even try me.</h2>");}else{toaster("Soon™️");}'>Block</a></li>
+				<li><a id='banButton' class="dropdown-item" href='#' onclick='if(WU == 0){toaster("<h2>What were you even thinking?</h2>");}else{triggerBanUI(WU);}'>Ban</a></li>
+			</ul>
+		</div>
+	</div>
+	<hr>
+	<span><p id='accountInfoCreationDate_O' class='placeholder-glow'><span class="placeholder col-4"></span></p></span>
+	<span><p id='accountInfoLastLoginDate_O' class='placeholder-glow'><span class="placeholder col-4"></span></p></span>
+	<div id='accountInfoLoading_O'>
+		<div class="spinner-border"></div>
+	</div>
+	<hr>
+	<div id='accountInfoSystemError_O'>
+		<div class="alert alert-danger">
+  			<i class="bi bi-person-fill-exclamation"></i> I was unable to get information for this account.
+		</div>
+	</div>
+        <div id='accountInfoUnexistent_O'>
+		<div class="alert alert-danger">
+  			<i class="bi bi-person-fill-exclamation"></i> This account does not exist.
+		</div>
+	</div>
+	<div id='accountInfoBanned_O'>
+		<div class="alert alert-danger">
+  			<i class="bi bi-person-fill-slash"></i> This account has been banned from this Chatroom.
+		</div>
+	</div>
+	<div id='accountInfoReserved_O'>
+		<div class="alert alert-warning">
+  			<i class="bi bi-person-fill-lock"></i> This username is reserved and is waiting to be claimed.
+		</div>
+	</div>
+	<div id='accountInfoFailedToLoadAll_O'>
+		<div class="alert alert-warning">
+  			<i class="bi bi-person-fill-exclamation"></i> Some information about this account could not be loaded! What you're seeing is partial.
+		</div>
+	</div>
+	<div id='accountInfoAnon_O'>
+		<div class="alert alert-info">
+  			<i class="bi bi-person-fill"></i> This user is anonymous. They have no details assigned to them.
+		</div>
+	</div>
+	<div id='accountInfoClientSide_O'>
+		<div class="alert alert-info">
+  			<i class="bi bi-gear-fill"></i> This is the System account. The beginning of Chatrooms was right here. He is still here to inform you when most needed.
+		</div>
+	</div>
+	<div id='accountInfoStaging_O'>
+		<div class="alert alert-info">
+  			<i class="bi bi-person-fill-lock"></i> This is a STAGING account, used to test new features. This account is not able to see any chat history, and you can't see their messages either.
+		</div>
+	</div>
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+  		<button id='userinfo_ok' type="button" class="btn btn-primary btn-block" data-bs-dismiss="modal" onclick='$("#accountInfoLoading_O").css("display", "block");'>Ok</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="searchUserModal">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title" id='usersearch_t'>User search</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+	<img src='account.png' class="rounded" id='other_pfp' width='128', height='128'><br><br>
+	<span><input class="form-control form-control-lg" id="accountSearchUsername_1" placeholder="Search for a user..."></span><br>
+	<div class='userActions'>
+		<div class="dropdown" style='display: inline;'>
+			<button id='ouMoreButton' type="button" class="btn btn-outline-secondary btn-block dropdown-toggle disabled" data-bs-toggle="dropdown" disabled>More actions</button>
+			<ul class="dropdown-menu">
+				<li><a id='copyIdButton' class="dropdown-item" href='#' onclick='if(WU == 0){toaster("Considering the System is above all beings on Chatrooms, he does not need identification.");}else{navigator.clipboard.writeText(WU); toaster("Copied to clipboard!");}'>Copy User ID</a></li>
+				<li><a id='blockButton' class="dropdown-item" href='#' onclick='if(WU == 0){toaster("<h2>Do not even try me.</h2>");}else{toaster("Soon™️");}'>Block</a></li>
+			</ul>
+		</div>
+	</div>
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+  		<button id='usersearch_ok' type="button" class="btn btn-primary btn-block" data-bs-dismiss="modal" onclick='userInfoByScreenName($("#accountSearchUsername_1")[0].value);'>Search!</button>
+      </div>
+
+    </div>
+  </div>
+</div><script>  function switchUpWatermark(){
+			$("#mrbeast").html('<img src=WatermarkUploader.png" width="128" height="128"><br><br>');
+		}
+</script>
+<div class='copeWithIt'>
+<!-- maybe another day <div id='mrbeast' style='pointer-events: auto !important;'>
+	
+	<video width='20%' height='20%' autoplay loop><source src='?' type='video/webm'>UPDATE YOUR BROWSER TO VIEW THIS VIDEO</video>
+	<br><br>
+	<a href='#' onclick='switchUpWatermark();'>Close video</a>
+	<br><br>
+	
+</div>
+<img src='/assets/WatermarkMegaUpdate.png' width='128' height='128'>
+<br><br>
+Version: 0.7.2
+<br>-->
+<span id='xloader'><div class="spinner-border"></div></span>
+</div>
+<div class="modal fade" id="apModal" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered modal-xl">
+    <div class="modal-content">
+      <div class='modal-header'>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <img src='' id='attachmentPreview' class='img-fluid rounded'><br>
+	<a href='#' id='apOGImage'>Open image source</a>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="loginModal">
+  <div class="modal-dialog modal-lg modal-fullscreen">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Welcome to Chatrooms <span class="badge text-bg-primary">BETA</span>!</h4>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+	<h2>Chatrooms, a CloudSeeker innovation</h2>
+	<hr>
+	<p id='init_auth'>You need to log into a Chatroom to proceed.</p><br>
+	<h2>Settings</h2>
+	<hr>
+	<button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#offlineSettings" aria-expanded="false" aria-controls="offlineSettings">Toggle Settings</button><br>
+	<div class="collapse" id="offlineSettings">
+		<div class="card card-body">
+			<h3>Local Settings</h3><hr>
+			<h4>Theme</h4>
+			<p>Choose how you want Chatrooms to look like. Keep in mind that special themes aren't available when you're logged out.</p>
+			<a class="btn btn-light" href='#' onclick="localStorage.setItem('theme','light');$('html').attr('data-bs-theme', 'light');$('#darkmode')[0].href='';">Light mode</a>
+			<a class="btn btn-secondary" href="#" onclick="localStorage.setItem('theme','gray');$('html').attr('data-bs-theme', 'light');$('#darkmode')[0].href='gray.css';">Gray mode</a>
+			<a class="btn btn-dark" href='#' onclick="localStorage.setItem('theme','dark');$('html').attr('data-bs-theme', 'dark');$('#darkmode')[0].href='dark.css';">Dark mode</a>
+		</div>
+	</div><br><br>
+	<h2>Chatrooms you own</h2>
+	<hr>
+	<p>Coming Soon!</p><br>
+	<h2>Join another Chatroom</h2><hr>
+	<p>Join a Chatroom not listed on the Suggested Chatrooms list by typing its domain here:</p>
+	<div class="input-group mb-3 mt-3">
+     		<input type="text" class="form-control" id="LSERV" placeholder="Chatroom Domain" name="Lserver">
+		<button class="btn btn-outline-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#loginAdvanced" aria-expanded="false" aria-controls="loginAdvanced">Advanced</button>
+		<button class="btn btn-primary" id='check_external_server' onclick='doesThatServerExist($("#LSERV")[0].value,$("#LPORT")[0].value,$("#LSECURE")[0].checked); innerHTML="<div class=\"spinner-border\"></div>";'>Check</button>
+    	</div>
+	<div class="collapse" id="loginAdvanced">
+		<div class="card card-body">
+			<h3>Advanced Settings</h3><hr>
+			<h4>Port</h4>
+			<p>In some occasions, there might be more Chatrooms on one domain, so you can insert a port for it here. Don't know what this is? Leave it as 7778 - it should work that way unless otherwise instructed.</p>
+			<input type="text" class="form-control" id="LPORT" placeholder="Port" name="Lport" value='7778'><hr>
+			<h4>Security</h4>
+			<p>Should the connection to the Chatroom be secure?</p>
+			<div class='alert alert-danger alert-dismissible fade show'><b>WARNING: ONLY DISABLE THIS IF YOU ARE TESTING A CONNECTION TO A CHATROOM!</b> Do not turn this off to actually talk with other users on a Chatroom. <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>
+			<div class="form-check">
+				<input class="form-check-input" type="checkbox" id="LSECURE" checked>
+				<label class="form-check-label">Secure</label>
+			</div>
+		</div>
+	</div><br>
+	<h2>Suggested Chatrooms <a onclick="getSuggested();" href="#"><i class="bi bi-arrow-clockwise"></i></a> <!-- <button onclick="$('#loginModal').modal('hide'); $('#offlineSettingsModal').modal({backdrop: 'static', keyboard: false}); $('#offlineSettingsModal').modal('show');" class="btn btn-secondary">Settings</button>--></h2>
+	<div class='alert alert-warning alert-dismissible fade show'><b>Warning:</b> If you are using a modified client, this list might be manipulated - only trust what you see here on the vanilla Chatrooms client! <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div> <hr>
+	<div class='container'>
+		<div id='suggestedServers' class='d-grid gap-2'>
+			<div class="spinner-border"></div>
+		</div>
+	</div>
+	</div>
+      </div>
+<!-- <button type="button" class="btn btn-primary btn-block" data-bs-toggle="tooltip" title="You have reached the Chatroom limit.">Disabled</button> -->
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="potentialJoinModal">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title" id='join-this-chatroom'>Join this Chatroom?</h4>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+	<p>Somebody invited you to join this Chatroom. Do you want to join it?</p>
+	<p id='pjoin_warning'></p>
+      </div>
+<!-- <button type="button" class="btn btn-primary btn-block" data-bs-toggle="tooltip" title="You have reached the Chatroom limit.">Disabled</button> -->
+      <!-- Modal footer -->
+      <div class="modal-footer">
+		<button class="btn btn-danger" onclick='checkForSatellite(); innerHTML="<div class=\"spinner-border\"></div>";' data-bs-dismiss='modal'>Cancel</button>
+		<button class="btn btn-success" onclick='$("#LPORT")[0].value = "7778"; doesThatServerExist(get_args.get("url"),"7778"); tempServer = get_args.get("url") + ":7778"; innerHTML="<div class=\"spinner-border\"></div>";' id='pjoin_confirm'>Join</button>
+  		<!--<button onclick="$('#loginModal').modal('hide'); $('#offlineSettingsModal').modal({backdrop: 'static', keyboard: false}); $('#offlineSettingsModal').modal('show');" class="btn btn-secondary">Settings</button>
+		<button type="button" class="btn btn-primary btn-block" onclick='processLogin($("#LSERV")[0].value,$("#LUSER")[0].value,$("#LPASS")[0].value);'>Login</button>-->
+      </div>
+
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="potentialBanModal">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title" id='ban-this-user'>Ban this user?</h4>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+	<p>Are you sure you would like to ban this user? They will be kicked and they won't be able to rejoin again until they're unbanned.</p>
+      </div>
+<!-- <button type="button" class="btn btn-primary btn-block" data-bs-toggle="tooltip" title="You have reached the Chatroom limit.">Disabled</button> -->
+      <!-- Modal footer -->
+      <div class="modal-footer">
+		<button class="btn btn-danger" onclick='checkForSatellite(); innerHTML="<div class=\"spinner-border\"></div>";' data-bs-dismiss='modal'>Cancel</button>
+		<button class="btn btn-success" onclick='$("#LPORT")[0].value = "7778"; doesThatServerExist(get_args.get("url"),"7778"); tempServer = get_args.get("url") + ":7778"; innerHTML="<div class=\"spinner-border\"></div>";' id='pjoin_confirm'>Join</button>
+  		<!--<button onclick="$('#loginModal').modal('hide'); $('#offlineSettingsModal').modal({backdrop: 'static', keyboard: false}); $('#offlineSettingsModal').modal('show');" class="btn btn-secondary">Settings</button>
+		<button type="button" class="btn btn-primary btn-block" onclick='processLogin($("#LSERV")[0].value,$("#LUSER")[0].value,$("#LPASS")[0].value);'>Login</button>-->
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="loginModalPhase2">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Log In</h4>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+        <div class="form-floating mb-3 mt-3">
+     		<input type="text" class="form-control" id="LUSER" placeholder="Enter username..." name="Lusername">
+      		<label id='init_user' for="Lusername">Username</label>
+    	</div>
+    	<div class="form-floating mt-3 mb-3">
+     		<input type="password" class="form-control" id="LPASS" placeholder="Enter password..." name="Lpassword">
+      		<label id='init_pass' for="Lpassword">Password</label>
+    	</div>
+	<div id='loginError'></div>
+      </div>
+<!-- <button type="button" class="btn btn-primary btn-block" data-bs-toggle="tooltip" title="You have reached the Chatroom limit.">Disabled</button> -->
+      <!-- Modal footer -->
+      <div class="modal-footer">
+  		<!--<button onclick="$('#loginModal').modal('hide'); $('#offlineSettingsModal').modal({backdrop: 'static', keyboard: false}); $('#offlineSettingsModal').modal('show');" class="btn btn-secondary">Settings</button>-->
+		<button type="button" class="btn btn-danger btn-block" onclick='checkForSatellite();' data-bs-dismiss='modal'>Cancel</button>
+		<button type="button" class="btn btn-primary btn-block" id='ConfirmLoginBTN' onclick='innerHTML="<div class=\"spinner-border\"></div>"; processLogin(tempServer.substring(tempServer,(tempServer.length-5)),$("#LUSER")[0].value,$("#LPASS")[0].value,$("#LPORT")[0].value,$("#LSECURE")[0].checked);'>Log In</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+<div aria-live="polite" aria-atomic="true" class="position-relative">
+    <div class="toast-container top-0 end-0 p-3">
+	<div id='copiedToClipboard' class="toast align-items-center" role="alert" aria-live="assertive" aria-atomic="true">
+	  <div class="d-flex">
+    		<div class="toast-body">
+      			Copied to clipboard
+    		</div>
+    		<button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+  	  </div>
+	</div>
+    </div>
+</div>
+<!--<div class="modal fade" id="offlineSettingsModal">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id='L_settings_t'>Settings</h4>
+        <button type="button" class="btn-close" onclick='$("#offlineSettingsModal").modal("hide"); $("#loginModal").modal({backdrop: "static", keyboard: false}); $("#loginModal").modal("show");'></button>
+      </div>
+      <div class="modal-body">
+		<div class="row">
+  			<div class="col">
+				<h6>CLIENT SETTINGS</h6>
+				<div class="list-group">
+  					<a href="#" onclick='$("#settings_content").html(document.getElementById("settings_css").innerHTML); $(".cssbox")[1].value = localStorage.getItem("css"); $("#css").html(localStorage.getItem("css"));' id='L_customcss_button' style='color:black !important;' class="list-group-item list-group-item-action">Customizer <span class="badge bg-danger">!</span></a>
+  					<a href="#" onclick='$("#settings_content").html(document.getElementById("settings_notis").innerHTML); $(".notivolume")[1].value = localStorage.getItem("notivolume");' id='L_notis_button' style='color:black !important;' class="list-group-item list-group-item-action">Notifications</a>
+  					<a href="#" onclick='$("#settings_content").html(document.getElementById("settings_locale").innerHTML);' id='L_locale_button' style='color:black !important;' class="list-group-item list-group-item-action">Language</a>
+				</div><br>
+				<h6>BASIC OPTIONS</h6>
+				<div class="list-group">
+					<a href="https://cloudseeker.xyz/about/contact/" target='blank' id='L_cl_button' style='color:black !important;' class="list-group-item list-group-item-action">Contact CloudSeeker</a>
+				</div>
+			</div>
+  			<div id='settings_content' class="col">
+				Click on one of the options to get started
+			</div>
+      </div>
+      <div class="modal-footer">
+  		<button type="button" class="btn btn-primary btn-block" onclick='$("#offlineSettingsModal").modal("hide"); $("#loginModal").modal({backdrop: "static", keyboard: false}); $("#loginModal").modal("show");' id='settings_o'>Ok</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+</div>-->
+<div class="modal fade" id="meModal">
+  <div class="modal-dialog modal-fullscreen">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title" id='userinfo_t_2'>User Settings</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+		<div class="row">
+  			<div class="col">
+				<div class="list-group list-group-flush">
+  					<a data-bs-toggle="list" href="#list-profile" role="tab" aria-controls="list-profile" onclick='//$(".cssbox")[1].value = localStorage.getItem("css"); $("#css").html(localStorage.getItem("css"));' id='usets_profile_button' class="list-group-item list-group-item-action active">Profile</a>
+  					<a data-bs-toggle="list" href="#list-account" role="tab" aria-controls="list-account" onclick='//$(".cssbox")[1].value = localStorage.getItem("css"); $("#css").html(localStorage.getItem("css"));' id='asets_profile_button' class="list-group-item list-group-item-action">Account Settings</a>
+				</div>
+			</div>
+  			<div id='profile_content' class="col">
+				    <div class="tab-content">
+					<div class="tab-pane fade show active" id="list-profile" role="tabpanel">
+
+		
+  			<!--<div class="col">
+				<div class="list-group">
+  					<a href="#" onclick='$("#userprofile").css("display", "block"); viewAccountInfo();' id='accprofile_button' style='color:black !important;' class="list-group-item list-group-item-action">Profile</a>
+				</div><br>
+				<div class="list-group">
+  					<a href="#" onclick='$("#usersettings_content").html(document.getElementById("accountsettings").innerHTML);' id='accsettings_button' style='color:black !important;' class="list-group-item list-group-item-action">Account</a>
+				</div><br>
+			</div>
+  			<div id='usersettings_content' class="col">-->
+				<div id='userprofile'>
+				<img id='accountInfoPicture_1' class="rounded" src='account.png' width='128' height='128'>
+				<br><br> <form method='POST' enctype='multipart/form-data' id='pfpForm'>
+					<label for="pfpAttachment" class="form-label">Upload profile picture:</label>
+					<div class="input-group mb-3">
+						<input class="form-control" required type="file" name="CHATROOMS_UPLOAD" id="pfpAttachment">
+						<button class="btn btn-outline-success" type="button" onclick='uploadProfilePicture();'><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-lg" viewBox="0 0 16 16"><path d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425a.247.247 0 0 1 .02-.022Z"/></svg></button>
+					</div>
+					<span id='pfpPreloader'></span>
+				</form><br>
+				<div>
+				<p>Set your presence:</p>
+				<div class="form-check">
+					<input class="form-check-input" type="radio" name="presence" selected style='$form-check-input-checked-bg-color: $success;' id="presence_online">
+					<label class="form-check-label" for="flexRadioDefault1">Online<br>You will appear as usual when you're online.</label>
+				</div>
+				<div class="form-check">
+					<input class="form-check-input" type="radio" name="presence" style='$form-check-input-checked-bg-color: $success;' id="presence_idle">
+					<label class="form-check-label" for="flexRadioDefault1">Idle<br>You will appear as if you're away from your device when you're online.</label>
+				</div>
+				<div class="form-check">
+					<input class="form-check-input" type="radio" name="presence" style='$form-check-input-checked-bg-color: $success;' id="presence_dnd">
+					<label class="form-check-label" for="flexRadioDefault1">Do not disturb<br>You will appear with a red dot on your profile with an indicator that you do not want to be disturbed, and all notifications are also disabled.</label>
+				</div>
+				<div class="form-check">
+					<input class="form-check-input" type="radio" name="presence" style='$form-check-input-checked-bg-color: $success;' id="presence_cloaked">
+					<label class="form-check-label" for="flexRadioDefault1">Cloaked<br>You will appear as if you're offline, when you're actually online.</label>
+				</div>
+				<button class="btn btn-success" onclick='changePresence();'><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-lg" viewBox="0 0 16 16"><path d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425a.247.247 0 0 1 .02-.022Z"/></svg> Set Presence</button>
+				</div><br>
+				<label for="accountInfoPStatus_1" class="form-label">Change status:</label>
+                                <div class="input-group mb-3">
+				    <input class='form-control' id='accountInfoPStatus_1' oninput='$("#statusPreview").html(emoteify(value, 20))' placeholder="Set a status!">
+                                    <button class="btn btn-outline-success" onclick='changeStatus();'><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-lg" viewBox="0 0 16 16"><path d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425a.247.247 0 0 1 .02-.022Z"/></svg></button>
+                                </div>
+				<p>Status will look like this: "<span id='statusPreview'></span>"</p>
+				<span id='sttsPreloader'></span><br>
+				<span><p id='accountInfoCreationDate_1'>Account created on: January 1st 1970, 00:00</p></span>
+				<span><p id='accountInfoLastLoginDate_1'>Last seen on: January 1st 1970, 00:00</p></span>
+				<div id='accountInfoLoading_1'>
+					<div class="spinner-border"></div>
+				</div>
+				<div id='accountInfoSystemError_1'>
+					<div class="alert alert-danger">
+  						<i class="bi bi-exclamation-triangle-fill"></i> I was unable to get information for your account.
+					</div>
+				</div>
+				<div id='accountInfoUpdateError_1'>
+					<div class="alert alert-danger">
+  						<i class="bi bi-exclamation-triangle-fill"></i> I was unable to update your account!
+					</div>
+				</div>
+			        <div id='accountInfoUnexistent_1'>
+					<div class="alert alert-danger">
+			  			<i class="bi bi-person-fill-exclamation"></i> This account does not exist.
+					</div>
+				</div>
+				<div id='accountInfoBanned_1'>
+					<div class="alert alert-danger">
+  						<i class="bi bi-person-fill-slash"></i> You have been banned from this Chatroom.
+					</div>
+				</div>
+				<div id='accountInfoReserved_1'>
+					<div class="alert alert-warning">
+  						<i class="bi bi-person-fill-lock"></i> This account is unclaimed.
+					</div>
+				</div>
+	                        <div id='accountInfoFailedToLoadAll_1'>
+		                   <div class="alert alert-warning">
+  			               <i class="bi bi-person-fill-exclamation"></i> Your profile picture could not be loaded! This is either because your profile picture was removed by an administrator, or because the Chatroom's media server is currently not available.
+		                       <br><br><i class="bi bi-person-fill-check"></i> In order to resolve this issue, you can try setting a profile picture again. If that doesn't work, please contact the Chatroom administrators.
+				   </div>
+	                        </div>
+				<div id='accountInfoAnon_1'>
+					<div class="alert alert-info">
+  						You're anonymous. Other users cannot identify who you are easily. Therefore, you cannot edit your account.
+					</div>
+				</div>
+				<div id='accountInfoClientSide_1'>
+					<div class="alert alert-info">
+  						You have defeated me.
+					</div>
+				</div>
+				<div id='accountInfoStaging_1'>
+					<div class="alert alert-info">
+  						<i class="bi bi-person-fill-lock"></i> This is a STAGING account, used to test new features. This account is not able to see any chat history, and you can't see their messages either.
+					</div>
+				</div>
+				<!--<button onclick='if(tokenRevealed == false){innerHTML = "Remember: Chatrooms is provided AS IS, therefore we are not responsible for any damage caused to your account by proceeding. Do not share or stream what is about to be revealed."; tokenRevealed = true;}else{alert("Your account token is " + token); tokenRevealed = false; innerHTML = "Reveal Account Token"}'>Reveal Account Token</button><br><br>-->
+      				</div></div>
+				<div class="tab-content">
+					<div class="tab-pane fade" id="list-account" role="tabpanel">
+						<h2>Account Settings</h2><hr>
+						<p>Change username:</p>
+						<div class="input-group mb-3">
+                                		        <div class='form-floating'>
+                    			                        <input class='form-control form-control-lg' id='accountInfoUsername_1' placeholder="Anonymous">
+                                     				    <label for="accountInfoUsername_1" class="form-label">Username</label>
+                                        		</div>
+							<button class="btn btn-outline-success" onclick='changeUsername();'><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-lg" viewBox="0 0 16 16"><path d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425a.247.247 0 0 1 .02-.022Z"/></svg></button>
+						</div><span id='usrPreloader'></span>
+						<br>
+					</div>
+				
+			</div>
+		</div>
+	</div>
+      <!-- Modal footer
+      <div class="modal-footer">
+  		<button id='userinfo_ok' type="button" class="btn btn-primary btn-block" data-bs-dismiss="modal" onclick='$("#accountInfoLoading_O").css("display", "block");'>Ok</button>
+      </div>-->
+      </div></div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="settingsModal">
+  <div class="modal-dialog modal-lg modal-fullscreen">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title" id='settings_t'>Settings</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+		<div class="row">
+  			<div class="col">
+				<h6 style='opacity:0.5;'><b>CLIENT SETTINGS</b></h6>
+				<div class="list-group list-group-flush">
+  					<a data-bs-toggle="list" href="#list-css" role="tab" aria-controls="list-css" onclick='//$(".cssbox")[1].value = localStorage.getItem("css"); $("#css").html(localStorage.getItem("css"));' id='customcss_button' class="list-group-item list-group-item-action active">Customizer <span class="badge bg-danger">!</span></a>
+  					<a data-bs-toggle="list" href="#list-notis" role="tab" aria-controls="list-notis" onclick='//$(".notivolume")[1].value = localStorage.getItem("notivolume");' id='notis_button' class="list-group-item list-group-item-action">Notifications</a>
+  					<a data-bs-toggle="list" href="#list-locale" role="tab" aria-controls="list-locale" onclick='//$("#settings_content").html(document.getElementById("settings_locale").innerHTML);' id='locale_button' class="list-group-item list-group-item-action">Language</a>
+				<hr>
+				<h6 style='opacity:0.5;'><b>CHATROOM SETTINGS</b></h6>
+					<a data-bs-toggle="list" href="#list-gifts" role="tab" aria-controls="list-gifts" onclick='//$("#settings_content").html(document.getElementById("settings_rules").innerHTML);' id='gifts_button' class="list-group-item list-group-item-action"><b>Gifts & Events</b></a>
+  					<a data-bs-toggle="list" href="#list-about" role="tab" aria-controls="list-about" onclick='getOnlineUsers(); // $("#settings_content").html(document.getElementById("settings_info").innerHTML + "4<div id=\"onlineUsers\"></div>");' id='infos_button' class="list-group-item list-group-item-action">Info</a>
+					<a href="#" onclick='viewAccountInfo(); $("#meModal").modal("show");' id='usersettings_button' data-bs-dismiss="modal" class="list-group-item list-group-item-action">User Settings</a>
+				<hr></div>
+				<h6 style='opacity:0.5;'><b>BASIC OPTIONS</b></h6>
+				<div class="list-group list-group-flush">
+					<!--<a href="javascript:extLink('https://twitter.com/CloudSeekerxyz')" id='twitter_1' class="list-group-item list-group-item-action"><img src='twitter.png' width='20' height='16'> CloudSeeker on X</a>
+					<a href="javascript:extLink('https://twitter.com/PTJelly_')" id='twitter_2' class="list-group-item list-group-item-action"><img src='twitter.png' width='20' height='16'> Popular Toppling Jelly on X</a>
+					<!--<a href="https://cloudseeker.xyz/blog/view.php?id=11" id='changelog' target='blank' id='cl_button' class="list-group-item list-group-item-action">Changelog</a>-->
+					<a href="#" onclick='$("#whispersV2Modal").modal("show");' id='changelog' data-bs-dismiss="modal" class="list-group-item list-group-item-action">What's New?</a>
+					<a href="#" onclick='/*$("#lgout_button").on("hide.bs.popover", function(event){console.log(event);localStorage.removeItem("server"); localStorage.removeItem("token"); location.reload(); socket.close();});*/$("#logoutModal").modal("show");' data-bs-toggle="modal" data-bs-content="Click again to confirm" id='lgout_button' style='color:#ff4d4d !important;' class="list-group-item list-group-item-action">Log Out</a>
+					<a href="#" onclick='$("#gdisconnectModal").modal("show");' id='gdisc_button' style='color:#ff4d4d !important;' data-bs-dismiss="modal" class="list-group-item list-group-item-action">Graceful Disconnect</a>				
+					<a href="#" onclick='$("#logoutModal").modal("show");' id='keycard_button' style='display: none;' data-bs-dismiss="modal" class="list-group-item list-group-item-action">KeycardServices</a>
+				</div>
+				<!--<a class='btn btn-lg' href='#' onclick='extLink("https://twitter.com/CloudSeekerxyz");' title='Twitter (or "X" lol)'><i class="bi bi-twitter"></i></a>-->
+				<a class='btn btn-lg' href='https://cloudseeker.xyz/ContactUs' title='More ways to contact us' target='_blank'><i class="bi bi-envelope-plus-fill"></i></a>
+				<div class="list-group">
+					<a href="#" onclick='$("#supersecretModal").modal("show");' id='secret_button' style='color:pink !important; opacity: 0;' data-bs-dismiss="modal" class="list-group-item list-group-item-action supersecret">Supersecret Settings</a>
+				</div>
+			</div>
+  			<div id='settings_content' class="col">
+				    <div class="tab-content" id="nav-tabContent">
+					<div class="tab-pane fade show active" id="list-css" role="tabpanel">
+						<h2 id='customcss_tp'>Customizer</h2><hr>
+	<h4 id='customcss_t'>Custom CSS</h4>
+	<p id='customcss_d'>Put additional customizations to your Chatrooms client! <br>To learn how to do CSS, <a href='https://www.w3schools.com/css/default.asp' target='blank'>click here</a>.</p>
+        <textarea class='cssbox form-control' style='width: 100%; height: 250px;' placeholder='Insert custom css here...'></textarea><br>
+	<button id='acceptcss_b' type="button" class="btn btn-primary btn-block" onclick='$("#css").html($(".cssbox")[0].value); localStorage.setItem("css",$(".cssbox")[0].value);'>Accept</button>
+	<div id='css_s'></div><hr>
+	<h4 id='thememodal_2'>Switch Theme</h4>	
+	<p id='thememodal_d'>Pick your Chatrooms theme:</p>
+	<!--<div class='d-grid .gap-3'>
+		<button id='lightmode' type="button" class="btn btn-light btn-block" onclick='$("html").attr("data-bs-theme", "light"); document.getElementById("darkmode").href = ""; localStorage.setItem("theme","light");'>Light mode</button>
+		<button id='inbetweenmode' type="button" class="btn btn-secondary btn-block" onclick='$("html").attr("data-bs-theme", "light"); document.getElementById("darkmode").href = "./gray.css"; localStorage.setItem("theme","gray");'>Gray mode</button>
+		<button id='bdarkmode' type="button" class="btn btn-dark btn-block" onclick='$("html").attr("data-bs-theme", "dark"); document.getElementById("darkmode").href = "./dark.css"; localStorage.setItem("theme","dark");'>Dark mode</button>
+	</div>-->
+	<div class="list-group" id="themes" role="tablist">
+		<a class="list-group-item list-group-item-action regular-theme" id="lightmode" data-bs-toggle="list" href='#' onclick="for(let x = 0; x < 4; x++){$('.s-theme')[x].classList = $('.s-theme')[x].classList.toString().replace('active', '');}localStorage.setItem('theme','light');$('html').attr('data-bs-theme', 'light');$('#darkmode')[0].href='';" role="tab">Light mode</a>
+		<a class="list-group-item list-group-item-action regular-theme" id="graymode" data-bs-toggle="list" href="#" onclick="for(let x = 0; x < 4; x++){$('.s-theme')[x].classList = $('.s-theme')[x].classList.toString().replace('active', '');}localStorage.setItem('theme','gray');$('html').attr('data-bs-theme', 'light');$('#darkmode')[0].href='gray.css';" role="tab">Gray mode</a>
+		<a class="list-group-item list-group-item-action regular-theme" id="darkmode" data-bs-toggle="list" href='#' onclick="for(let x = 0; x < 4; x++){$('.s-theme')[x].classList = $('.s-theme')[x].classList.toString().replace('active', '');}localStorage.setItem('theme','dark');$('html').attr('data-bs-theme', 'dark');$('#darkmode')[0].href='dark.css';" role="tab">Dark mode</a>
+	</div><hr>
+	<h4>Special Themes</h4>
+	<p id='sthememodal_d'>These are special themes created to fit special events or other stuff.<br>Anyways, Pick your Chatrooms theme:</p>
+	<!--<div class='d-grid .gap-3'>
+		<button id='neonmode' type="button" style='background: #00ffff !important; color: black !important;' class="btn btn-primary btn-block" onclick='$("html").attr("data-bs-theme", "light"); document.getElementById("darkmode").href = "./neon.css"; localStorage.setItem("theme","neon");'>Neon mode</button>
+		<button id='woodmode' type="button" style='background: #993300 !important;' class="btn btn-primary btn-block" onclick='$("html").attr("data-bs-theme", "dark"); document.getElementById("darkmode").href = "./wood.css"; localStorage.setItem("theme","wood");'>Wood mode</button>
+		<button id='purplemode' type="button" style='background: #4d004d !important;' class="btn btn-primary btn-block" onclick='$("html").attr("data-bs-theme", "dark"); document.getElementById("darkmode").href = "./purp.css"; localStorage.setItem("theme","purp");'>Purple mode</button>
+		<button id='halloweenlightmode' type="button" class="btn btn-warning btn-block" onclick='document.getElementById("darkmode").href = "./halloween.css"; localStorage.setItem("theme","halloween");'>Light mode (HALLOWEEN)</button>
+		<button id='christmasdarkmode' type="button" class="btn btn-success btn-block" onclick='document.getElementById("darkmode").href = "./christmas.css"; localStorage.setItem("theme","christmas");'>Dark mode (CHRISTMAS)</button>
+	</div>-->
+	<div class="list-group" id="sthemes" role="tablist">
+		<a class="list-group-item list-group-item-action s-theme" id="neonmode" data-bs-toggle="list" href='#' onclick="for(let x = 0; x < 3; x++){$('.regular-theme')[x].classList = $('.regular-theme')[x].classList.toString().replace('active', '');}localStorage.setItem('theme','neon');$('html').attr('data-bs-theme', 'light');$('#darkmode')[0].href='neon.css';" role="tab">Neon mode</a>
+		<a class="list-group-item list-group-item-action s-theme" id="purpmode" data-bs-toggle="list" href="#" onclick="for(let x = 0; x < 3; x++){$('.regular-theme')[x].classList = $('.regular-theme')[x].classList.toString().replace('active', '');}localStorage.setItem('theme','purp');$('html').attr('data-bs-theme', 'dark');$('#darkmode')[0].href='purp.css';" role="tab">Purple mode</a>
+		<a class="list-group-item list-group-item-action s-theme" id="retromode" data-bs-toggle="list" href="#" onclick="for(let x = 0; x < 3; x++){$('.regular-theme')[x].classList = $('.regular-theme')[x].classList.toString().replace('active', '');}localStorage.setItem('theme','retro');$('html').attr('data-bs-theme', 'dark');$('#darkmode')[0].href='retro.css';" role="tab">Retro</a>
+		<a class="list-group-item list-group-item-action s-theme" id="christmasmode" data-bs-toggle="list" href='#' onclick="for(let x = 0; x < 3; x++){$('.regular-theme')[x].classList = $('.regular-theme')[x].classList.toString().replace('active', '');}localStorage.setItem('theme','christmas');$('html').attr('data-bs-theme', 'dark');$('#darkmode')[0].href='christmas.css';" role="tab">Legacy dark mode (Christmas)</a>
+	</div><hr>
+	<h4>Message Toolbar</h4>
+	<p>Manage which buttons should be visible in the message toolbar. Coming Soon!</p>
+	<div class="form-check">
+		<input class="form-check-input" type="checkbox" id="show_attch" onchange='silentOptIn("attachment", checked); updateConfiguration()'>
+		<label class="form-check-label">Add Attachment</label>
+	</div>
+	<div class="form-check">
+		<input class="form-check-input" type="checkbox" id="show_clear" onchange='silentOptIn("clearchat", checked); updateConfiguration()'>
+		<label class="form-check-label">Clear Chat</label>
+	</div>
+	<div class="form-check">
+		<input class="form-check-input" type="checkbox" id="show_slash" onchange='silentOptIn("slashcomms", checked); updateConfiguration()'>
+		<label class="form-check-label">Slash Commands</label>
+	</div>
+	<div class="form-check">
+		<input class="form-check-input" type="checkbox" id="show_textbox" checked disabled onchange='updateConfiguration()'>
+		<label class="form-check-label">Chat Textbox (REQUIRED)</label>
+	</div>
+	<div class="form-check">
+		<input class="form-check-input" type="checkbox" id="show_emotes" onchange='silentOptIn("emoteslist", checked); updateConfiguration()'>
+		<label class="form-check-label">Emotes List</label>
+	</div>
+	<div class="form-check">
+		<input class="form-check-input" type="checkbox" id="show_sendmsg" checked disabled onchange='updateConfiguration()'>
+		<label class="form-check-label">Send Message (REQUIRED)</label>
+	</div>
+					</div>
+					<div class="tab-pane fade show" id="list-notis" role="tabpanel">
+						<h2 class="modal-title" id='notis_t'>Notifications</h2><hr>
+	<h4 id='notis_volume'>Notification Sound Volume</h4>
+	<p id='notis_volume_d'>Adjust how loud the notification sound should be.</p>
+        <input type='range' min='0' max='1' step='0.1' value='50' onchange='localStorage.setItem("notivolume",$(".notivolume")[0].value); audio.volume = $(".notivolume")[0].value' class='form-range notivolume'>
+	<h4 id='notis_pings'>Pings</h4>
+	<p id='notis_pings_d'>Manage settings related to pings here</p>
+	
+	<div class="form-check">
+		<input class="form-check-input" type="checkbox" id="joinmsg" onchange='silentOptIn("joinmsg", checked);'>
+		<label class="form-check-label">Send message when someone joins the Chatroom</label>
+	</div><br>
+	<div class="form-check">
+		<input class="form-check-input" type="checkbox" id="pings" onchange='silentOptIn("pings", checked);'>
+		<label class="form-check-label">Play notification sound</label>
+	</div>
+	<div class="form-check">
+		<input class="form-check-input" type="checkbox" id="pushes" onchange='silentOptIn("push_notis", checked);'>
+		<label class="form-check-label">Push notifications</label>
+	</div>
+	<div class="form-check" style='margin-left: 20px;'> 
+		<input class="form-check-input" type="checkbox" id="pushes_wisp" onchange='silentOptIn("push_wisp", checked);'>
+		<label class="form-check-label">Notify me when I get a whisper</label>
+	</div>
+	<div class="form-check" style='margin-left: 20px;'> 
+		<input class="form-check-input" type="checkbox" id="pushes_pings" onchange='silentOptIn("push_pings", checked);'>
+		<label class="form-check-label">Notify me when I get pinged</label>
+	</div>
+	<div class="form-check" style='margin-left: 20px;'> 
+		<input class="form-check-input" type="checkbox" id="pushes_presence" onchange='silentOptIn("push_presence", checked);'>
+		<label class="form-check-label">Notify me when someone comes online</label>
+	</div>
+					</div>
+				    <div class='tab-pane fade show' id='list-locale' role='tabpanel'>
+                                        <h2 class="modal-title" id='locale_t'>Language</h2><hr>
+					<div class='d-grid gap-2'>
+					<button type="button" class="btn btn-primary btn-block" onclick='localStorage.setItem("locale","en_us"); location.reload();'><img src='assets/english.png' width='40' height='24'> English</button>
+					<button type="button" class="btn btn-primary btn-block" onclick='localStorage.setItem("locale","mk_mk"); location.reload();'><img src='assets/macedonian.png' width='40' height='24'>Македонски</button>
+					<button type="button" class="btn btn-primary btn-block" onclick='localStorage.setItem("locale","es_es"); location.reload();'><img src='assets/spanish.png' width='32' height='24'> Español</button>
+					</div>
+
+		<hr>
+		<!--<button type="button" class="btn btn-primary btn-block" onclick='localStorage.setItem("locale","tr_tr"); location.reload();'><img src='/assets/turkish.png' width='32' height='24'> TÃ¼rkÃ§e</button>
+		<button type="button" class="btn btn-primary btn-block" onclick='localStorage.setItem("locale","it_it"); location.reload();'><img src='/assets/italian.png' width='32' height='20'> Italiano*</button>
+		<button type="button" disabled class="btn btn-primary btn-block disabled" onclick='localStorage.setItem("locale","pl_pl"); location.reload();'><img src='/assets/polish.png' width='32' height='20'> Polski* (pending)</button>
+		Due to a lack of translation support, language changing has been temporarily disabled-->Want to translate Chatrooms to Macedonian, Spanish, Turkish, Italian or Polish? Message me on Steam at <a href='https://s.team/p/gmdr-qrbf/FKDKTPPN'>https://s.team/p/gmdr-qrbf/FKDKTPPN</a>!
+				    </div>
+				    <div class='tab-pane fade show' id='list-rules' role='tabpanel'>
+					<h2 class="modal-title" id='rules_t'>Rules</h2>
+	<hr>
+	<script>function loadRules(){
+    $.ajax({url: httphost + "/rules.txt", 
+            success: function(result, xhr, status){$("#rules").html(result.toString()); $(".messageSpace").html($("#list-rules")[0].innerHTML);}, 
+    error: function(xhr, status, error){$(".messageSpace").html(strings.satellite_error); toaster(strings.satellite_error);}});}</script>
+      	<textarea id='rules' readonly style='width: 100%; height: 500px;' class='form-control'></textarea>
+				    </div>
+				    <div class='tab-pane fade show' id='list-about' role='tabpanel'>
+				    	<h2 class="modal-title" id='info_chatroomNameTitle'>About this Chatroom</h2><hr>
+        <p id='info_chatroomName'>Chatroom Name: loading...</p>
+	<p id='info_anonymousAllowed'>Anonymous Users Allowed: loading...</p>
+	<p id='info_chatroomSaves'>Chatroom Saves Messages: loading...</p>
+	<p id='info_chatroomLocked'>Chatroom Is Locked: loading...</p>
+	<p id='info_chatroomEmail'>Chatroom Verification Level: loading...</p>
+	<p id='info_contentId'>Content Package ID: loading...</p>
+	<p id='info_welcomeMessage'></p><br>
+	<div id='onlineUsers'>
+	</div>
+				    </div>
+
+				    <div class='tab-pane fade show' id='list-user' role='tabpanel'>
+                                        <h2 class="modal-title" id='usetts_t'>User Settings</h2><hr>
+					<p>Manage your profile and how you appear on this Chatroom.</p>
+
+		<hr> </div>
+<div class="tab-pane fade show" id="list-gifts" role="tabpanel">
+						<h2 class="modal-title" id='gifts_t'>Gifts & Events</h2><hr>
+						<div class="accordion" id="gifts-list">
+  <div class="accordion-item">
+    <h2 class="accordion-header">
+      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#gift-1" aria-controls="collapseOne">
+        CloudSeeker 1st Anniversary Art Contest <span class="badge rounded-pill text-bg-danger"><b>CONTEST ENDED</b></span>
+      </button>
+    </h2>
+    <div id="gift-1" class="accordion-collapse collapse show" data-bs-parent="#gifts-list">
+      <div class="accordion-body">
+          Winners: kingbanimation1 on Twitter and <a href='#' onclick='closeEverythingElse(); userInfo(61, "Patayka");'>PatayKa</a> on Chatrooms Hometown
+      </div>
+    </div>
+  </div>
+  <div class="accordion-item">
+    <h2 class="accordion-header">
+      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#gift-2" aria-controls="collapseOne">
+        ??? &nbsp;<span class="badge rounded-pill text-bg-secondary"><b>COMING SOON</b></span>
+      </button>
+    </h2>
+    <div id="gift-2" class="accordion-collapse collapse show" data-bs-parent="#gifts-list">
+      <div class="accordion-body">
+        Coming soon!
+      </div>
+    </div>
+  </div>
+</div> <br><br>
+	</div>
+</div>
+</div>
+      <!-- Modal footer -->
+      <div class="modal-footer">
+  		<button type="button" class="btn btn-primary btn-block" data-bs-dismiss="modal" id='settings_o'>Ok</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+</div>
+</div class='specialGuest'></div>
+<script></script>
+</body>
+</html>

@@ -1,0 +1,58 @@
+.uinteractionSpace{background: #20123a;} body{background: #140c27 !important; color: white;} .message{background: #140c27 !important;} .messageSpace{background: #140c27 !important;} .navbar{background: #20123a !important; } .serverList{background: #20123a;} .author{color: #fff;}
+.list-group-item.active{
+        background: #0d6efd !important;
+        color: white !important;
+} 
+.list-group-item{ 
+        background: #20123a !important;
+        color: white !important;
+}
+
+.modal-content{
+	background: #20123a !important;
+}
+.activatedServer{
+	border: 1px #495057 solid !important;
+	border-radius: 5px !important;
+}
+.btn{
+#	color: white !important;
+}
+.btn-light{
+#	color: black !important;
+}
+.btn-warning{
+#	color: black !important;
+}
+nav .navbar-dark{
+	background-color: #4d4d4d !important;
+}
+input, textarea{
+	background-color: #20123a !important;
+	border: 1px #495057 solid !important;
+	color: white !important;
+}
+.modal-header{
+	border-bottom: var(--bs-modal-header-border-width) solid #495057 !important;
+}
+.modal-footer{
+	border-top: var(--bs-modal-header-border-width) solid #495057 !important;
+}
+.card{
+	background: #20123a !important;
+	color: white !important;
+}
+.card-body{
+	color: white !important;
+	border: 1px solid #495057 !important;
+	border-radius: 5px 5px 0px 0px;
+}
+.card-footer{
+	color: white !important;
+	border-bottom: 1px solid #495057 !important;
+	border-left: 1px solid #495057 !important;
+	border-right: 1px solid #495057 !important;
+}
+.server{
+	color: white;
+}

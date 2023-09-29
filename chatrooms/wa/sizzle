@@ -1,0 +1,57 @@
+#!/bin/bash
+
+PLATFORM=deb
+PREV=$PWD
+DEBUG=true
+
+if [ $# == 0 ]
+	then
+		echo -e "\e[1m[Chatrooms-Client]\e[0m Upgrading Chatrooms..."
+		if [ $PLATFORM == "deb" ]
+			then				
+				cd /usr/lib/chatrooms/resources/app
+				wget https://raw.githubusercontent.com/PopularTopplingJelly/Chatrooms-Client/main/jquery-3.6.0.min.js
+				wget https://raw.githubusercontent.com/PopularTopplingJelly/Chatrooms-Client/main/ChatroomsClient.css
+				wget https://raw.githubusercontent.com/PopularTopplingJelly/Chatrooms-Client/main/ChatroomsClient.js
+				wget https://raw.githubusercontent.com/PopularTopplingJelly/Chatrooms-Client/main/bootstrap-icons.css
+				wget https://raw.githubusercontent.com/PopularTopplingJelly/Chatrooms-Client/main/bootstrap.min.css
+				wget https://raw.githubusercontent.com/PopularTopplingJelly/Chatrooms-Client/main/bootstrap.bundle.min.js
+				wget https://raw.githubusercontent.com/PopularTopplingJelly/Chatrooms-Client/main/index.html
+		elif [ $PLATFORM == "lite" ]
+			then
+				cd ./resources/app
+				wget https://raw.githubusercontent.com/PopularTopplingJelly/Chatrooms-Client/main/jquery-3.6.0.min.js
+				wget https://raw.githubusercontent.com/PopularTopplingJelly/Chatrooms-Client/main/ChatroomsClient.css
+				wget https://raw.githubusercontent.com/PopularTopplingJelly/Chatrooms-Client/main/ChatroomsClient.js
+				wget https://raw.githubusercontent.com/PopularTopplingJelly/Chatrooms-Client/main/bootstrap-icons.css
+				wget https://raw.githubusercontent.com/PopularTopplingJelly/Chatrooms-Client/main/bootstrap.min.css
+				wget https://raw.githubusercontent.com/PopularTopplingJelly/Chatrooms-Client/main/bootstrap.bundle.min.js
+				wget https://raw.githubusercontent.com/PopularTopplingJelly/Chatrooms-Client/main/index.html
+		fi
+		echo -e "\e[1m[Chatrooms-Client]\e[0m Starting Chatrooms..."
+		if [ $DEBUG == "true" ]
+			then
+				cd "~/Documents/GitHub/GALauncher-Sizzle (copy 1)/wa"
+				npm start
+		elif [ $DEBUG == "false" ]
+			then
+				chatrooms
+		fi
+		exit 0
+fi
+
+if [ $1 == --skip-upgrade ]
+	then
+		echo -e "\e[1m[Chatrooms-Client]\e[0m Starting Chatrooms..."
+		if [ $DEBUG == "true" ]
+			then
+				cd "~/Documents/GitHub/GALauncher-Sizzle (copy 1)/wa"
+				npm start
+		elif [ $DEBUG == "false" ]
+			then
+				chatrooms
+		fi
+		exit 0
+fi
+
+

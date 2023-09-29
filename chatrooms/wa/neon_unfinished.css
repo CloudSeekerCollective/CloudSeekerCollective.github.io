@@ -1,0 +1,38 @@
+body{
+	background: #1a1a1a !important;
+	color: white !important;
+}
+.messageSpace{
+	border: white 1px solid;
+}
+.actualMessageSpace{
+	border-bottom: 1px #fff solid;
+}
+.message{
+	background: #1a1a1a;
+	padding: 3px;
+	display: block;
+}
+.systemMessage{}
+.systemError{
+	color: red;
+}
+.author{
+	cursor: pointer;
+}
+.uinteractionSpace{
+	border: white 1px solid;
+}
+.serverList{
+	border: white 1px solid;
+}
+.modal-content{
+	background: #1a1a1a !important;
+}
+.btn-close{
+	border: 1px solid white !important;
+}
+.activatedServer{
+	border: 1px white solid !important;
+	border-radius: 5px !important;
+}

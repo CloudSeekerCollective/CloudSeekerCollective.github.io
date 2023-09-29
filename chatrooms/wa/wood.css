@@ -1,0 +1,52 @@
+.uinteractionSpace{background: #993300;} body{background: #4d1a00 !important; color: white;} .message{background: #4d1a00 !important;} .messageSpace{background: #4d1a00 !important;} .navbar{background: #993300 !important; } .serverList{background: #993300;} .author{color: #993300;}
+.modal-content{
+	background: #993300 !important;
+}
+.btn-close{
+	border: 1px solid white !important;
+}
+.activatedServer{
+	border: 1px #4d1a00 solid !important;
+	border-radius: 5px !important;
+}
+.btn{
+	color: white !important;
+}
+.btn-light{
+	color: black !important;
+}
+.btn-warning{
+	color: black !important;
+}
+nav .navbar-dark{
+	background-color: #993300 !important;
+}
+input{
+	background-color: #993300 !important;
+	border: 1px #4d1a00 solid !important;
+	color: white !important;
+}
+.modal-header{
+	border-bottom: var(--bs-modal-header-border-width) solid #4d1a00 !important;
+}
+.modal-footer{
+	border-top: var(--bs-modal-header-border-width) solid #4d1a00 !important;
+}
+.card{
+	background: #1a1a1a !important;
+	color: white !important;
+}
+.card-body{
+	color: white !important;
+	border: 1px solid #333 !important;
+	border-radius: 5px 5px 0px 0px;
+}
+.card-footer{
+	color: white !important;
+	border-bottom: 1px solid #333 !important;
+	border-left: 1px solid #333 !important;
+	border-right: 1px solid #333 !important;
+}
+.server{
+	color: white;
+}

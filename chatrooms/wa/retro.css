@@ -1,0 +1,64 @@
+.uinteractionSpace{background: #000;} body{background: #000 !important; color: white;} .message{background: #000 !important;} .messageSpace{background: #000 !important;} .navbar{background: #00 !important; } .serverList{background: #000;} .author{color: lime;}
+.list-group-item.active{
+        background: lime !important;
+        color: black !important;
+} 
+.list-group-item{ 
+        background: black !important;
+        color: white !important;
+}
+
+.modal-content{
+	background: black !important;
+}
+.activatedServer{
+	border: 1px gray solid !important;
+	border-radius: 5px !important;
+}
+.btn{
+#	color: white !important;
+}
+.btn-light{
+#	color: black !important;
+}
+.btn-warning{
+#	color: black !important;
+}
+nav .navbar-dark{
+	background-color: #000 !important;
+}
+input, textarea{
+	background-color: #000 !important;
+	border: 1px lime solid !important;
+	color: lime !important;
+}
+.modal-header{
+	border-bottom: var(--bs-modal-header-border-width) solid white !important;
+}
+.modal-footer{
+	border-top: var(--bs-modal-header-border-width) solid white !important;
+}
+.card{
+	background: black !important;
+	color: white !important;
+}
+.card-body{
+	color: white !important;
+	border: 1px solid white !important;
+	border-radius: 5px 5px 0px 0px;
+}
+.card-footer{
+	color: white !important;
+	border-bottom: 1px solid white !important;
+	border-left: 1px solid white !important;
+	border-right: 1px solid white !important;
+}
+.server{
+	color: white;
+}
+a{
+	color: lime;
+}
+.text-success{
+	color: lime !important;
+}

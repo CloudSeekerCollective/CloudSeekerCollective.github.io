@@ -1,0 +1,95 @@
+body{
+	#background: #1a1a1a !important;
+	#color: white !important;
+}
+/*.list-group-item.active{
+	background: #0d6efd !important;
+	color: white !important;
+}
+.list-group-item{
+	background: #1a1a1a !important;
+	color: white !important;
+}*/
+.messageSpace{
+}
+.actualMessageSpace{
+}
+.message{
+	#background: #1a1a1a;
+	padding: 3px;
+	display: block;
+}
+@keyframes gaybutton {
+	0% {background-color: red !important;}
+	14% {background-color: orange !important;}
+	28% {background-color: yellow !important;}
+	42% {background-color: green !important;}
+	59% {background-color: blue !important;}
+	76% {background-color: purple !important;}
+	90% {background-color: pink !important;}
+	100% {background-color: red !important;}
+}
+.systemMessage{}
+.systemError{
+	color: #ff4d4d;
+}
+.author{
+	cursor: pointer;
+}
+.uinteractionSpace{
+	background: #22262b;
+}
+.serverList{
+	background: #22262b;
+}
+/*.modal-content{
+	background: #1a1a1a !important;
+}*/
+.activatedServer{
+	border: 1px #333 solid !important;
+#	border-radius: 5px !important;
+}
+.btn{
+	#color: white !important;
+}
+.btn-light{
+	#color: black !important;
+}
+.btn-warning{
+	#color: black !important;
+}
+nav .navbar-dark{
+	background-color: #22262b !important;
+}
+input{
+	#background-color: #1a1a1a !important;
+	#border: 1px #333 solid !important;
+	#color: white !important;
+}
+/*.modal-header{
+	border-bottom: var(--bs-modal-header-border-width) solid #333 !important;
+}
+.modal-footer{
+	border-top: var(--bs-modal-header-border-width) solid #333 !important;
+}
+.card{
+	background: #1a1a1a !important;
+	color: white !important;
+}
+.card-body{
+	color: white !important;
+	border: 1px solid #333 !important;
+	border-radius: 5px 5px 0px 0px;
+}
+.card-footer{
+	color: white !important;
+	border-bottom: 1px solid #333 !important;
+	border-left: 1px solid #333 !important;
+	border-right: 1px solid #333 !important;
+}*/
+.server{
+	color: white;
+}
+.onlineList{
+#	background: #262626;
+}

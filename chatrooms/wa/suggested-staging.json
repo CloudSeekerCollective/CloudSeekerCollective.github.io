@@ -1,0 +1,36 @@
+[
+	{
+		"type": "chatroom",
+		"server": "chatrooms.epicgamer.org",
+		"server_name": "Chatroom (Verified Level 2)",
+		"server_motd": "Welcome to our Chatroom!",
+		"create_account": "https://chatrooms.epicgamer.org/chatrooms/login/",
+		"verified_type": 2,
+		"additional_labels": [{"label": "CHATROOMS HOMETOWN", "type": "success"}]
+	},
+	{
+		"type": "chatroom",
+		"server": "populartopplingjelly.ezwebsites.com",
+		"server_name": "Chatroom (Verified Level 1)",
+		"server_motd": "Welcome to our Chatroom!",
+		"create_account": "https://chatrooms.epicgamer.org/chatrooms/login/",
+		"verified_type": 1,
+		"additional_labels": []
+	},
+	{
+		"type": "chatroom",
+		"server": "largeglasspane.crabdance.com",
+		"server_name": "Chatroom (Not Verified)",
+		"server_motd": "Alternate mirror of Chatrooms Hometown<br>Want to claim this spot? Send a message with details about your chatroom in #chatroom-ads in Chatrooms Hometown!",
+		"create_account": "https://chatrooms.epicgamer.org/chatrooms/login/",
+		"verified_type": 0,
+		"additional_labels": []
+	},
+	{
+		"type": "sponsored",
+		"server": "https://chatrooms.epicgamer.org/ContactUs",
+		"server_name": "Chatroom (Sponsored Content)",
+		"server_motd": "Imagine there is some sponsored content on this tile.",
+		"additional_labels": []
+	}
+]

@@ -1,0 +1,18 @@
+[
+	{
+		"type": "chatroom",
+		"server": "cloudseeker.xyz",
+		"server_name": "Chatrooms Hometown",
+		"server_motd": "Welcome to Chatrooms Hometown, the classic and vanilla feel of Chatrooms!<br>Chatrooms Hometown is the official Chatroom hosted by Team CloudSeeker. Ask questions for support with anything CloudSeeker related, hang out with other cool people and partake in fun events hosted by us! Join today!",
+		"create_account": "https://cloudseeker.xyz/chatrooms/login/",
+		"verified_type": 2,
+		"additional_labels": [{"label": "CHATROOMS HOMETOWN", "type": "success"}]
+	},
+	{
+		"type": "sponsored",
+		"server": "https://cloudseeker.xyz/blog/view.php?id=13",
+		"server_name": "Your Chatroom Here",
+		"server_motd": "This here could be your Chatroom! We might sometimes place other people's public Chatrooms on this list so they can get more users to join and more engagement. Click down below to learn more.",
+		"additional_labels": []
+	}
+]

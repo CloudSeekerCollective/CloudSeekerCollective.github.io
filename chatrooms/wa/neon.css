@@ -1,0 +1,91 @@
+body{
+	background: black !important;
+	color: white !important;
+}
+.messageSpace{
+}
+.actualMessageSpace{
+}
+.message{
+	background: black;
+	padding: 3px;
+	display: block;
+}
+@keyframes gaybutton {
+	0% {background-color: red !important;}
+	14% {background-color: orange !important;}
+	28% {background-color: yellow !important;}
+	42% {background-color: green !important;}
+	59% {background-color: blue !important;}
+	76% {background-color: purple !important;}
+	90% {background-color: pink !important;}
+	100% {background-color: red !important;}
+}
+.systemMessage{}
+.systemError{
+	color: red;
+}
+.author{
+	cursor: pointer;
+}
+.uinteractionSpace{
+	background: #ff00ff;
+}
+.serverList{
+	background: #ff00ff;
+}
+.modal-content{
+	background: #00ffff !important;
+	color: black !important;
+}
+.btn-close{
+	border: 1px solid white !important;
+}
+.activatedServer{
+	border: 1px white solid !important;
+	border-radius: 5px !important;
+}
+.btn{
+	color: white !important;
+}
+.btn-light{
+	color: black !important;
+}
+.btn-warning{
+	color: black !important;
+}
+nav .navbar-dark{
+	background-color: black !important;
+}
+input{
+	background-color: #1a1a1a !important;
+	border: 1px #333 solid !important;
+	color: white !important;
+}
+.modal-header{
+	border-bottom: var(--bs-modal-header-border-width) solid blue !important;
+}
+.modal-footer{
+	border-top: var(--bs-modal-header-border-width) solid blue !important;
+}
+.card{
+	background: #1a1a1a !important;
+	color: white !important;
+}
+.card-body{
+	color: white !important;
+	border: 1px solid #333 !important;
+	border-radius: 5px 5px 0px 0px;
+}
+.card-footer{
+	color: white !important;
+	border-bottom: 1px solid #333 !important;
+	border-left: 1px solid #333 !important;
+	border-right: 1px solid #333 !important;
+}
+.server{
+	color: white;
+}
+a{
+	color: #ffff00;
+}

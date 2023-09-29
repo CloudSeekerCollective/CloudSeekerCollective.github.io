@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+	<head>
+		<title>Chatrooms</title>
+		<script>
+			var token = "";
+			var time = "<?php echo(time()); ?>";
+			var platform = "wa";
+			function init(){
+				console.log("if this got triggered, then there is no need for it to :skull:");
+				/*$.get("/api/ping/", 
+					function(data, status){
+						if(data[0] == "pong"){
+							console.log("Connected to server!"); 
+							addMessage("System", "Welcome to the Chatrooms Experience!", 0, 0, true);
+						}
+						else{
+							console.error("FUCK"); 
+							addMessage("System", "<span style='color: red;'>Failed to connect to Chatrooms!</span>", 0, 0, true);
+							addMessage("System", "<span style='color: red;'>The server responded: " + data[0] + "</span>", 0, 0, true);
+						}
+					}
+				);*/
+			}
+		</script>
+		<script src='jquery-3.6.0.min.js'></script>
+		<link href="WatermarkSatelliteEnabled.png" rel="icon">
+		<link href="bootstrap.min.css" rel="stylesheet">
+		<link rel="stylesheet" href="bootstrap-icons.css">
+		<script src="bootstrap.bundle.min.js"></script>
+		<link href="ChatroomsClient.css" rel="stylesheet">
+		<link href="" id='darkmode' rel="stylesheet">
+		<script src="ChatroomsClient.js"></script>
+		<meta charset="UTF-8">
+		<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+		<meta http-equiv="Pragma" content="no-cache">
+		<meta http-equiv="Expires" content="0">
+		<meta http-equiv="Access-Control-Allow-Origin" content="*">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+		<meta property="og:type" content="website">
+	 	<meta property="og:description" content="Chatrooms is a free, open source and lightweight chat platform where anyone can host a space for their friends, people and even family to hang out.">
+	 	<meta property="og:title" content="CloudSeeker >> Chatrooms Web App">
+	 	<meta property="og:url" content="https://cloudseeker.xyz">
+	</head>
+<body>
+	<div class='settings'>
+	</div>
+	<div class="offcanvas offcanvas-end" id="userlist">
+		<div class="offcanvas-header">
+			<button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"></button>
+		</div>
+		<!--<div class="offcanvas-body">
+			<!--<span id='nua_text'>It's pretty quiet in here...</span><br>
+			<h2>In your voice chat</h2>
+			<div class='vcOnlineList'>
+				<p>It's pretty quiet in here...</p>
+			</div>
+			<h2>In this Chatroom</h2>
+			<div class='onlineList'>
+				<div class="spinner-border"></div>
+			</div>
+		</div>-->
+	</div>
+	<noscript><h1>Chatrooms requires JavaScript to run!</h1><p>You should enable JavaScript in your browser settings or if you can't, then you should <a href='https://chatrooms.epicgamer.org/BrowserUpgrade/'>upgrade your browser</a></p></noscript>
+	<div class='uinteractionSpace utop'> 
+		<h3 id='welcomeMessage'></h3>
+		<!--<button id='customcss_button' class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#themeCreatorModal">Custom CSS</button>
+		<button id='locale_button' class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#localeSwitcherModal">Change language</button>
+		<button id='theme_button' class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#themeSwitcherModal">Switch Theme</button>
+		<button id='multi_button' class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#multiModal">Switch Chatroom</button>-->
+	</div>
+	<div class='actualMessageSpace'>
+		<div class='row'>
+			<div class='serverList col-sm-2 collapse collapse-horizontal show' id="channels-coll">
+				<!--<span id='nca_text'>No channels available!</span><br>-->
+				<div>
+					<div class='x'>
+						<h6 style="opacity:0.5;"><b>INFORMATION CHANNELS</b></h6>
+						<button id='channel_rules' class='server emerg activatedServer' onclick='localChannel = "x:rules"; xload(); isDone = true; clearChat(); loadRules();'><span class='channel-dot'><i class="bi bi-exclamation-lg"></i>•</span> Rules</button><br>
+					</div>
+					<hr>
+					<h6 style="padding-left: 10px; opacity:0.5;"><b>TEXT CHANNELS</b></h6>
+					<div class="channels">
+						<div class="spinner-border"></div>
+					</div>
+					<hr>
+					<h6 style="padding-left: 10px; opacity:0.5;"><b>VOICE CHANNELS</b></h6>
+					<div class="vchannels">
+						<div class="spinner-border"></div>
+					</div>
+					<hr>
+					<h6 style="padding-left: 10px; opacity:0.5;"><b>WHISPERS</b></h6>
+					<div id='whispers'>
+                        	                <div class="spinner-border"></div>
+					</div>
+				</div>
+			</div>
+			<div class='messageSpace col-sm'>
+			</div>
+			<div class='allOnlineLists serverList col-sm-2 collapse collapse-horizontal show'>
+				<div>
+					<!--<span id='nua_text'>It's pretty quiet in here...</span>
+					<h2>In your voice chat</h2>
+					<div class='vcOnlineList'>
+						<p>It's pretty quiet in here...</p>
+					</div>-->
+					<h2>In this Chatroom</h2>
+					<div class='onlineList'>
+						<div class="spinner-border" aria-label="Loading..."></div>
+					</div><hr>
+					<h2>In your voice chat</h2>
+					<div class='vcOnlineList'>
+						<p>Join a voice channel to view who is talking.</p>
+					</div><hr>
+                                        <button id='findUserButton' class='server emerg activatedServer' onclick='$("#searchUserModal").modal("show")'><span class='channel-dot'><i class="bi bi-search"></i> •</span> User search</button><br>
+				</div>
+			</div>
+		</div>
+		<div class='uinteractionSpace ubottom input-group'>
+			<span id='files_attached'></span>
+		</div>
+		<div class='uinteractionSpace ubottom input-group'>
+			<span id='vs_status'></span>
+		</div>
+		<div class='uinteractionSpace ubottom input-group' id='send_message'>
+			<button id='attachment_button' class="btn btn-outline-primary" type="button" style='display:none;' data-bs-toggle="modal" data-bs-target="#attachmentModal" aria-label="Add Attachment"><i class="bi bi-plus-circle-fill"></i></button>
+			<button id='clear_button' class="btn btn-outline-danger" type="button" onclick='clearChat();' style='display:none;' aria-label="Clear Chat"><i class="bi bi-trash-fill"></i></button>
+			<button id='slash_button' class="btn btn-outline-secondary" type="button" style='display:none;' data-bs-toggle="modal" data-bs-target="#commandsModal" aria-label="Slash Command List"><i class="bi bi-slash-lg"></i></button>
+  			<input type="text" class="form-control" id='msgBox' placeholder="Type a message or run a command...">
+			<button id='emotes_button' class="btn btn-outline-primary" type="button" data-bs-toggle="modal" style='display:none;' data-bs-target="#emotesListModal">Emotes</button>
+  			<button id='send_button' class="btn btn-success" onclick='sendMessage(document.getElementById("msgBox").value);'>Send</button>
+		</div>
+		<div class='uinteractionSpace ubottom input-group' id='edit_message' style='display: none'>
+  			<input type="text" class="form-control" id='editMsgBox' placeholder="Cook up your edits...">
+			<button id='emotes_button' class="btn btn-outline-primary" type="button" data-bs-toggle="modal" data-bs-target="#emotesListModal">Emotes</button>
+			<button id='cancel_edit_button' class="btn btn-outline-danger" onclick='$("#send_message").attr("style", ""); $("#edit_message").attr("style", "display: none;");'>Cancel</button>
+  			<button id='edit_button' class="btn btn-primary" onclick='editMessage(document.getElementById("editMsgBox").value, messageToBeEdited); mbv="msgBox"; $("#send_message").attr("style", ""); $("#edit_message").css("display", "none"); document.getElementById("editMsgBox").value = "";'>Edit</button>
+		</div>
+		<div class='uinteractionSpace'>
+			<nav class="navbar navbar-expand-sm">
+  			<div class="container-fluid">
+				<a class="navbar-brand" href="#" onclick='viewAccountInfo(token,localAccount);'><img id='miniPfp' src='account.png' width='24' height='24'> <span id='client_username'><div class="spinner-border"></div></span> <span id='client_username_warning' class='text-warning'></span> <i class="bi bi-person-vcard-fill"></i></a>
+					<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
+      						<span class="navbar-toggler-icon"></span>
+    					</button>
+    					<div class="collapse navbar-collapse" id="mynavbar">
+      						<ul class="navbar-nav me-auto">
+        						<li class="nav-item">
+        						</li>
+      						</ul>
+      						<div class="d-flex">
+							<button id='stop_record' style='display: none;' class="btn btn-lg text-danger" onclick='vcState = false;' aria-label="Mute Voice"><i class="bi bi-mic"></i></button>
+							<button id='mute_button' class="btn btn-lg" onclick='startRecordingVoice();' aria-label="Unmute Voice"><i class="bi bi-mic-mute-fill"></i></button> &nbsp;
+							<!--<button id='userlist_button' class="btn btn-info" data-bs-toggle="offcanvas" data-bs-target="#userlist">User List</button> &nbsp;-->
+							<button class="btn btn-lg" data-bs-toggle="collapse" data-bs-target=".col-sm-2" aria-label="Toggle"><i class="bi bi-toggles"></i></button>
+							<button id='about_button' class="btn btn-lg" data-bs-toggle="modal" data-bs-target="#aboutModal" aria-label="About Chatrooms"><i class="bi bi-info-circle"></i></button> &nbsp;
+       							<button class="btn btn-lg" data-bs-toggle="modal" data-bs-target="#settingsModal" aria-label="Settings"><i class="bi bi-gear-fill"></i></button>
+      							<ul class="dropdown-menu">
+    								<li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#themeSwitcherModal">Switch Theme</a></li>
+  							  	<li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#rulesModal">View Chatroom Rules</a></li>
+  							  	<li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#aboutModal">About Chatrooms</a></li>
+  							  	<li><a class="dropdown-item" style='color:red;' href="#">Logout</a></li>
+ 		 					</ul>
+						</div>
+					</div>
+  				</div>
+			</nav>
+		</div>
+	</div>
+</body>
+</html>

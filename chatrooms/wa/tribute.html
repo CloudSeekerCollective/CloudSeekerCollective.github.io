@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Chatrooms</title>
+		<script>
+			var token = "";
+			var time = "<?php echo(time()); ?>";
+			function init(){
+				console.log("if this got triggered, then there is no need for it to :skull:");
+				/*$.get("/api/ping/", 
+					function(data, status){
+						if(data[0] == "pong"){
+							console.log("Connected to server!"); 
+							addMessage("System", "Welcome to the Chatrooms Experience!", 0, 0, true);
+						}
+						else{
+							console.error("FUCK"); 
+							addMessage("System", "<span style='color: red;'>Failed to connect to Chatrooms!</span>", 0, 0, true);
+							addMessage("System", "<span style='color: red;'>The server responded: " + data[0] + "</span>", 0, 0, true);
+						}
+					}
+				);*/
+			}
+		</script>
+		<script src='jquery-3.6.0.min.js'></script>
+		<link href="assets/WatermarkSatelliteEnabled.png" rel="icon">
+		<link href="bootstrap.min.css" rel="stylesheet">
+		<script src="bootstrap.bundle.min.js"></script>
+		<link href="ChatroomsClient.css" rel="stylesheet">
+		<link href="" id='darkmode' rel="stylesheet">
+		<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+		<meta http-equiv="Pragma" content="no-cache">
+		<meta http-equiv="Expires" content="0">
+		<meta http-equiv="Access-Control-Allow-Origin" content="*">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+		<meta property="og:type" content="website">
+	 	<meta property="og:description" content="Chatrooms is a free, open source- wait, was it always meant to be like this?">
+	 	<meta property="og:title" content="CloudSeeker >> Chatrooms Web App...?">
+	 	<meta property="og:url" content="https://chatrooms.epicgamer.org">
+	</head>
+<body>
+	<div class='settings'>
+	</div>
+	<nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+  			<div class="container-fluid">
+				<a class="navbar-brand" href="#" onclick='viewAccountInfo(token,localAccount);'><span id='client_username'>Chatrooms</span></a>
+					<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
+      						<span class="navbar-toggler-icon"></span>
+    					</button>
+    					<div class="collapse navbar-collapse" id="mynavbar">
+      						<ul class="navbar-nav me-auto">
+        						<li class="nav-item">
+         							<a class="nav-link">Homepage</a> 
+        						</li>
+      						</ul>
+      						<div class="d-flex">
+       							<button class="btn btn-primary" >Login</button>
+						</div>
+					</div>
+  				</div>
+			</nav>
+	<script>
+		const dialogue = ["you see, the chatrooms you know wasnt always that modern experience", 
+				"with all of those themes, custom css, and all other features of all kinds...", 
+				"...which should be obvious, but today i am here to give you a look into the past",
+				"the past called, they want to show you their new invention...",
+				"...and they called it \"Chatrooms\".",
+				"it was originally created by a team of 4 people.",
+				"but due to the arrogance and cruelty of 2 of those people, only 2 remained on the team...",
+				"and the 2 people that committed to finishing this project were me, PTJ and GeofTheCake.",
+				"chatrooms originally had a closed beta program that had randomly picked people from a discord server to take part in tests",
+				"and chatrooms would not be what it is today without them...",
+				"i would like to give a shoutout to ScrumplyJester, itay baba, Pillars...",
+				"dubtoshi, Kouto, TheMome, and pek...",
+				"there were probably more that i dont want to acknowledge for personal reasons or because i forgot about them",
+				"these people suggested features, they reported issues, they built it along with me and Geof like that",
+				"it was one of the best times of my life...",
+				"so if chatrooms ever makes it out to be more widely known, i wish these 7 people the best in life later on...",
+				"because they helped me build a platform that i could never have with such great feedback and suggestions.",
+				"me and Geof will forever cherish the moments that we had while testing this application.",
+				"i will say again, thank you to everybody who has ever contributed to this project that is not well known but has had a crazy history. it will be a wild ride in the future.",
+				"the past is signing off now. carry on, carry on..."];
+		var h = 0;
+		var thePastIsComing = setInterval(function(){
+			if(h != 20){
+				$(".messageSpace").html($(".messageSpace")[0].innerHTML + "<div class='message systemMessage'><a href='#' class='author'>[PopularTopplingJelly]</a>&nbsp;<span class='messageContent'>" + dialogue[h] + "</span></div>");
+				h++;
+				$('.messageSpace').animate({scrollTop: 100000}, 'fast');
+			}
+			else{
+				clearInterval(thePastIsComing);
+				$(".messageSpace").html($(".messageSpace")[0].innerHTML + "<div class='message systemMessage'><a href='#' class='author'>[System]</a>&nbsp;<span class='messageContent' style='color: red;'>There was an authentication failure, and you could not be connected to Chatrooms...? <a href='#' onclick='location.href=\"index.html\"'>You should warp back home.</a></span></div>");
+				$('.messageSpace').animate({scrollTop: 100000}, 'fast');
+			}
+		}, 5000);
+	</script>
+	<div class='uinteractionSpace utop'> 
+		<h3 id='welcomeMessage'>Options</h3>
+		<button class="btn btn-success">H</button>
+		<button class="btn btn-dark">Dark mode</button>
+		<button class="btn btn-light">Light mode</button>
+		<!--<button id='customcss_button' class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#themeCreatorModal">Custom CSS</button>
+		<button id='locale_button' class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#localeSwitcherModal">Change language</button>
+		<button id='theme_button' class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#themeSwitcherModal">Switch Theme</button>
+		<button id='multi_button' class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#multiModal">Switch Chatroom</button>-->
+	</div>
+	<div class='actualMessageSpace'>
+		<div class='serverList channels'>
+			<!--<span id='nca_text'>No channels available!</span><br>-->
+			You're currently connected to Based Club
+		</div>
+		<div class='messageSpace'>
+			<div class='message systemMessage'><a href='#' class='author'>[System]</a>&nbsp;<span class='messageContent'>Connecting to Chatrooms...</span></div>
+			<div class='message systemMessage'><a href='#' class='author'>[System]</a>&nbsp;<span class='messageContent'>Welcome to the Chatrooms Experience!</span></div>
+		</div>
+		<div class='uinteractionSpace ubottom input-group mb-3' id='send_message'>
+  			<input type="text" class="form-control" id='msgBox' placeholder="Type a message or run a command...">
+			<button id='emotes_button' class="btn btn-outline-primary" type="button" data-bs-toggle="modal" data-bs-target="#emotesListModal">Emotes</button>
+  			<button id='send_button' class="btn btn-success">Send</button>
+		</div>
+		<div class='uinteractionSpace' style='padding: 0; position: fixed;'>
+		</div>
+	</div>
+	<div class='copeWithIt'>
+<img src='/assets/nerd.png'>
+<h2>BETA</h2>
+<br><br>
+Version: <span id='aboutVersion'>0.0.1</span><br>
+Compiled on: <span id="aboutCompiled">May 20th 2022</span><br>
+Compiled from commit: <span id="aboutCompiledFrom"></span><br>
+Authentication: <span id='aboutAuth'>Authenticating... or is it?</span><br><br>
+Thank you for using the Chatrooms Infrastructure!
+<br>
+<p></p>
+</div>
+</body>
+</html>

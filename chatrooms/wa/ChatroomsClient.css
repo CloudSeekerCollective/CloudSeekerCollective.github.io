@@ -1,0 +1,176 @@
+*{
+	font-family: SSP;
+}
+b, h1, h2, strong{
+	font-family: SSP-B !important;
+}
+@font-face{
+	font-family: SSP;
+	src: url("assets/fonts/SourceSansPro-Regular.ttf");
+}
+@font-face{
+	font-family: SSP-B;
+	src: url("assets/fonts/SourceSansPro-Black.ttf");
+	font-weight: default;
+}
+.messageSpace{
+	margin-left: none;
+	height: 700px;
+	overflow: auto;
+}
+.actualMessageSpace{
+	width: 100% !important;
+	font-size: 24px !important;
+	overflow: auto;
+	height: 100%;
+}
+.message{
+	#background: white;
+	padding: 3px;
+	display: block;
+}
+.gaybtn {
+	color: white !important;
+	width: 200;
+	/*background-color: red;*/
+	position: relative;
+	background-image: linear-gradient(to right, red,orange,yellow,green,blue,indigo,violet,red);
+	/*animation-name: gaybutton;
+	animation-duration: 5s;
+	animation-iteration-count: infinite;*/
+}
+
+@keyframes gaybutton {
+	0%   {background-color:red;color:white !important;}
+	20%  {background-color:orange;color:white !important;}
+	40%  {background-color:yellow;color:black !important;}
+	60%  {background-color:green;color:white !important;}
+	80%  {background-color:blue;color:white !important;}
+	100% {background-color: purple;color:white !important;}
+}
+.systemMessage{}
+.systemError{
+	color: red;
+}
+.author{
+	cursor: pointer;
+}
+.uinteractionSpace{
+	width: 100% !important;
+	font-size: 24px;
+	border-top: none;
+	padding: 5px;
+	background: #f2f2f2;
+	overflow: auto !important;
+}
+.serverList, .allOnlineLists{
+	background: #f2f2f2;
+	height: 700px;
+	overflow: auto;
+}
+#whispers, .channels, .x, .vchannels{
+	padding: 5px;
+	/*background: #f2f2f2;*/
+	font-size: 24px;
+	height: auto;
+	margin-left: 5px !important;
+	overflow: auto;
+}
+/*.onlineList{
+	background: #f2f2f2;
+	font-size: 24px;
+	padding: 5px;
+	height: 90%;
+	width: 308px;
+	margin-right: 0;
+	float: right;
+	overflow: auto;
+	border-left: none;
+	position: absolute;
+	right: 10px;
+	top: 0px;
+}*/
+.copeWithIt{
+	opacity: 0.8;
+	position: fixed;
+	top: 0;
+	right: 0;
+	margin: 10px;
+	text-align: right;
+	z-index: 3;
+	pointer-events: none;
+}
+.specialGuest{
+	opacity: 0.8;
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	margin: 1px;
+	text-align: left;
+}
+.server{
+	background: none;
+	width: 100%;
+#	border: 1px gray solid;
+#	border-radius: 50%;
+	margin-bottom: 5px;
+#	cursor: pointer;
+#	transition: 0.1s;
+	text-align: left;
+}
+.server:disabled{
+	background: gray;
+}
+.server:hover{
+	border: 1px #111 solid !important;
+	border-radius: 5px;
+}
+.server:active{
+	transition: 0s;
+	opacity: 0.5;
+}
+.activatedServer{
+#	border: 1px #f2f2f2 solid !important;
+	border: 1px gray solid !important;
+	border-radius: 5px !important;
+}
+.channel{
+	border: 1px gray solid;
+	color: gray;
+	border-radius: 5px;
+	margin-bottom: 10px;
+	cursor: pointer;
+	transition: 0.1s;
+	padding: 5px;
+	width: 190px !important;
+}
+.channel:hover{
+	border: 1px black solid;
+	color: black;
+	opacity: 0.6 !important;
+}
+.channel:active{
+	transition: 0s;
+	opacity: 0.3;
+}
+.server.selected{
+	border-left: 5px black solid !important;
+	background: gray;
+}
+.channel-name{
+	text-align: center !important;
+}
+.channel-dot{
+	opacity: 0.5;
+}
+@media screen and (max-width: 600px) 
+	.serverList{
+		display: none;
+	}
+}
+.supersecret{
+	opacity: 0 !important;
+}
+.supersecret:hover{
+	opacity: 1 !important;
+}
